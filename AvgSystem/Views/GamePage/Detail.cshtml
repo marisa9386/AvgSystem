@@ -1,0 +1,528 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "文字冒险模拟器";
+}
+<style>
+    body {
+        background-color: #eee;
+        height: 100%;
+    }
+    .post_meta_top {
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+}
+    .post_content {
+    padding: 10px;
+    font-family: Poppins,sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #757575;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+    .courseContent {
+        line-height: 20px;
+    }
+
+    .commentDiv {
+        border-bottom:1px solid rgb(228, 231, 237);
+    }
+
+    .commentDiv2 {
+        height: 35px; line-height: 35px;
+    }
+</style>
+
+<!--内容填充-->
+<div style="background-color: #eee">
+    <!--课程详情模块 begin-->
+    <div class="height30"></div>
+    <section class="container" style="width:900px;">
+        <div class="row">
+            <!--左侧div-->
+            <div class="col-md-12">
+                <div class="jobList">
+                    <div class="bottom15">
+                        <span class="loginText" id="gameTitle"></span>
+                    </div>
+                    <div class="height8"></div>
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <div>
+                                <div class="btn btn-default jobButton" id="gameType">
+                                    
+                                </div>
+                                <span class="sepLine">|</span>
+                                <span id="gameLikes"></span>
+                                <span class="sepLine">|</span>
+                                <span id="gameDislikes"></span>
+                                <span class="sepLine">|</span>
+                                <span id="gameIncome"></span>
+                                
+                            </div>
+
+                            <div>
+                                <div class="height8"></div>
+                                <span class="textPeople">作者：</span>
+                                <span class="textPeople" style="margin-left: 10px" id="gameAuthor"></span>
+                            </div>
+                            <div>
+                                <div class="height8"></div>
+                                <span class="textPeople">发布于：</span>
+                                <span class="textPeople" style="margin-left: 10px" id="gamePubTime"></span>
+                            </div>
+                            <div>
+                                <div class="height8"></div>
+                                <input id="hidcost" type="text" style="display:none;" />
+                                <input id="Keyword" type="text" style="display:none;" />
+                                <span class="textPeople">价格：</span>
+                                <span class="textPeople" style="margin-left: 10px" id="gameCost"></span>
+                            </div>
+                            <div>
+                                <div class="height8"></div>
+                                <span class="textPeople">简介：</span>
+                                <div class="height8"></div>
+                            </div>
+                            <div class="courseContent" id="gameDesc">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="height50"></div>
+                            <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: -10px;display:none;" id="playGame">开始游戏</button>
+                            <div class="height20"></div>
+                            <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: -10px;display:none;" id="commentGame" data-toggle="modal" data-target="#commentModal">编写测评</button>
+                        </div>
+                    </div>
+
+                    </div>
+
+                <div class="height20"></div>
+
+            </div>
+
+        </div>
+    </section>
+    <!--课程详情模块 end-->
+
+
+    <div class="height8"></div>
+
+    <section class="container" style="width:900px;">
+        <div class="row">
+            <div class="col-md-12">
+                <!--栏目导航 begin-->
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist" style="background-color: #ddd">
+                        <li role="presentation" class="presentation active"><a href="#home2" aria-controls="home2" role="tab" data-toggle="tab">评论</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content" style="background-color: #fff;min-height: 700px">
+
+
+                        <div role="tabpanel" class="tab-pane active" id="home2">
+                            <div class="height20"></div>
+                            <div class="row">
+                                <div id="commentList" class="col-md-10" style="margin-left:40px;">
+
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <div class="page" id="page6"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--栏目导航 end-->
+            </div>
+
+
+        </div>
+    </section>
+    <div class="height50"></div>
+
+
+    <!--评论模态框 begin-->
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="max-width:550px;margin-top: 18.5% ">
+            <div class="modal-content" style="max-width: 550px;">
+                <div class="modal-header" style="text-align: center;border-bottom: 0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body" style="padding: 20px 55px 20px 55px">
+                    <div class="loginText">发布测评</div>
+                    <div class="height40"></div>
+                    <!--用户登录表单-->
+                    <form>
+                        <div class="form-group">
+                            <textarea id="commentContent" maxlength="200" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadiosinline" id="optionsLikes1" value="-1" checked> 一般
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadiosinline" id="optionsLikes2" value="1"> 好评
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadiosinline" id="optionsLikes3" value="0"> 差评
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" id="comment_button" onclick="uploadComment()">
+                        发布
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--评论模态框 end-->
+
+</div>
+<!--<script src="~res/UI/Content/js/yifanToast.js"></script>-->
+<!--内容填充-->
+<script type="text/javascript">
+    var GameId = @ViewBag.GameId;
+    var loadJobMain = function (data) {
+        if (data != null && data != "undefined") {
+        }
+    };
+
+
+    var uploadComment = function () {
+        var evaluate = $("input[name='optionsRadiosinline']:checked").val();
+        var comment = $("#commentContent").val();
+        var like = 0;
+        var dislike = 0;
+
+        if (evaluate == "1")
+        {
+            like = 1;
+        } else if (evaluate == "0")
+        {
+            dislike = 1;
+        }
+
+        var param = {gid:GameId,like:like,dislike:dislike,content:comment};
+        var args = JSON.stringify([param]);
+
+        newTransaction(mainContractAddress, 0, "addCommentInfo", args, function(t) {
+            ;
+
+            });
+
+    }
+
+
+    var loadGameDetail = function () {
+        var args = JSON.stringify([GameId]);
+        onSimulateCallClick(mainContractAddress, "getGameInfo", args, function (e) {
+            var item = JSON.parse(e.result);
+            if (item.title) {
+                loadInfo("gameTitle", item.title);
+                var gameType = "自制";
+                if (item.gameType == 1) {
+                    gameType = "官方";
+                }
+                loadInfo("gameType", gameType);
+
+                loadInfo("gameLikes", "好评 " + item.likes);
+                loadInfo("gameDislikes", "差评 " + item.dislikes);
+                loadInfo("gameIncome", "收入 " + item.income + " NAS");
+                loadInfo("gameAuthor", item.author);
+                
+
+                loadInfo("gamePubTime", timeStamp2String2(item.pubTime));
+                loadInfo("gameCost", item.cost + " NAS");
+
+                $("#hidcost").val(item.cost);
+                $("#Keyword").val(item.startSection);
+
+                loadInfo("gameDesc", item.desc);
+
+                if (item.cost == 0 || (item.pay != null && item.pay == 1) ){
+                    loadInfoHtml("playGame", "开始游戏");
+                    $('#playGame').show();
+                    $('#playGame').click(startGame);
+                } else {
+                    loadInfoHtml("playGame", "购买游戏");
+                    $('#playGame').show();
+                    $('#playGame').click(buyGame);
+                }
+                //$('#commentGame').show();
+
+                if (item.isComment && (item.isComment == 0) ){
+                    $('#commentGame').show();
+                } else {
+                    $('#commentGame').hide();
+                }
+
+
+
+
+            } else {
+
+            }
+
+        });
+
+    };
+
+    function loadInfo(id, content) {
+        if (id == "" || id == null || id == "undefined") {
+            return;
+        }
+        else {
+            if (content != null && content != "null") {
+                $("#" + id).text(content);
+            }
+            else {
+                $("#" + id).text('');
+            }
+        }
+    }
+
+    function loadInfoUrl(id, content) {
+        if (id == "" || id == null || id == "undefined") {
+            return;
+        }
+        else {
+            if (content != null && content != "null") {
+                var url = "<a target='_blank' href='http://" + content.replace("http://","") + "'>"+content+"</a>";
+                $("#" + id).html(url);
+            }
+            else {
+                $("#" + id).html('');
+            }
+        }
+    }
+
+    function loadInfoHtml(id, content) {
+        if (id == "" || id == null || id == "undefined") {
+            return;
+        }
+        else {
+            if (content != null && content != "null") {
+                $("#" + id).html(content);
+            }
+            else {
+                $("#" + id).html('');
+            }
+        }
+    }
+
+    var startGame = function () {
+        window.location.href = '@Url.Action("Play", "GamePage")?id=' + GameId;
+    };
+
+    var buyGame = function () {
+        var args = JSON.stringify([GameId]);
+        var cost = $("#hidcost").val();
+        newTransaction(mainContractAddress, cost, "payGame", args, function(t) {
+            //console.log(t)
+            layer.alert("购买成功", function (index) {
+                layer.close(index);
+                loadGameDetail();
+            });
+
+
+        });
+
+    };
+
+
+    var jobDetailUrl = '@Url.Action("Detail", "JobPage")';
+
+    var applyJobUrl = '@Url.Action("ApplyJob", "JobPage")';
+    var applyJob = function () {
+
+
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("CheckApplyJob", "JobPage")',
+            data: { id: JobId },
+            dataType: "json",
+            success: function (data) {
+
+                //console.log(data);
+                //先判断是否登录
+                //登录后
+                //1.已参加学习，直接提示已经申请
+                //2.未参加学习，询问是否申请
+                if (data.state == "success") {
+                    if (data.data.type == "IN") {
+                        layer.alert(data.message, function (index) {
+                            layer.close(index);
+                        });
+                    }
+                    else
+                    {
+
+                        layer.confirm('是否申请此职位？', {
+                            btn: ['确认', '取消'] //按钮
+                        }, function (index) {
+
+                            layer.close(index);
+
+
+                            $.ajax({
+                                url: applyJobUrl,
+                                data: { id: JobId },
+                                type: "post",
+                                dataType: "json",
+                                success: function (data2) {
+                                    if (data2.state == "success") {
+                                        //yifanToast(data2.message);
+
+                                        layer.alert(data2.message, function (index) {
+                                            layer.close(index);
+                                        });
+
+
+                                    } else {
+                                        layer.alert(data2.message, function (index) {
+                                            layer.close(index);
+                                            $('#btnLogin').click();
+                                        });
+
+                                    }
+                                }
+
+                            });
+
+
+                        }, function () {
+
+                        });
+
+
+                    }
+                } else {
+                    layer.alert(data.message, function (index) {
+                        layer.close(index);
+                        $('#btnLogin').click();
+                    });
+                    //window.setTimeout(function () {
+                    //    window.location.href = '@Url.Action("Detail", "JobPage")?id=' + JobId;
+                    //}, 2000);
+                }
+            }
+        });
+
+
+
+    };
+    var getJobUrl = '@Url.Action("GetJob", "JobPage")';
+
+
+
+
+
+    (function ($) {
+        var param = {rows:10,page:1,sidx:"creTime",sord:"desc",title:"",records:0,id:GameId};
+        $.course = {
+            requestParam: param,
+            setpage: function (pagecount, t) {
+                $.course.requestParam.page = pagecount;
+
+                $(t).parent().parent().children().removeClass('categoryActive');
+                $(t).parent().addClass('categoryActive');
+
+                $.course.init();
+            },
+            buildCourseList: function (data) {
+
+                var $gameArea = $('#commentList');
+                $gameArea.empty();
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var item = data[i];
+
+                        var creTime = timeStamp2String(item.creTime);
+                        var like = item.like;
+                        var dislike = item.dislike;
+                        var recommend = "";
+
+                        if (like == 1) {
+                            recommend = "推荐";
+                        }
+                        if (dislike == 1) {
+                            recommend = "不推荐";
+                        }
+
+                        $gameArea.append('<div class="commentDiv" >\
+                                        <div class="commentDiv2" >\
+                                            <span class="post_meta_top" style="float: left;">\
+                                                ' + item.author + ' - ' + creTime +'\
+                                                <span>\
+                                                    &nbsp;' + recommend + '\
+                                                </span>\
+                                            </span>\
+                                        </div>\
+                                        <div class="height8"></div>\
+                                        <p class="post_content">' + item.content + '</p>\
+                                        <div class="height30"></div>\
+                                    </div>');
+                    }
+                } else {
+                    $gameArea.append('暂无相关评论！');
+                }
+            },
+            init: function () {
+
+                var args = JSON.stringify([$.course.requestParam]);
+
+                onSimulateCallClick(mainContractAddress, "getGameComments", args, function (e) {
+                    var result = JSON.parse(e.result);
+                    $('#page6').html("");
+                    MyPage(result.Page);
+                    var courseListHTML = $.course.buildCourseList(result.List);
+                }
+                );
+
+            }
+        };
+
+        $(function () {
+            loadGameDetail();
+            $.course.init();
+            // $('#applyJob').click(applyJob);
+        });
+
+    })(jQuery);
+
+
+
+
+
+
+
+    function MyPage(Page) {
+        $.mypage("page6", Page.page, Page.total, function (page) {
+            $.course.setpage(page, this);
+            updatePage(page);
+        });
+    }
+    function updatePage(now) {
+        $.mypage("page6", now, Page.total, function (page) {
+            $.course.setpage(page, this);
+            updatePage(page);
+        });
+    }
+
+</script>
+

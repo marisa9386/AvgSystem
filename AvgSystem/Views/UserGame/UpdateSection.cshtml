@@ -1,0 +1,353 @@
+﻿@{
+    Layout = "~/Views/Shared/_User.cshtml";
+    ViewBag.Title = "文字冒险模拟器";
+}
+
+<meta id="pageLabel" data-page="UserGame" />
+<style>
+    body {
+        background-color: #eee;
+        height: 100%;
+    }
+</style>
+<link href="~/res/UI/UIContent/js/functiondatepick/css/foundation-datepicker.css" rel="stylesheet" type="text/css">
+<script src="~/res/UI/UIContent/js/functiondatepick/js/foundation-datepicker.js"></script>
+<script src="~/res/UI/UIContent/js/functiondatepick/js/locales/foundation-datepicker.zh-CN.js"></script>
+
+<!--右侧正文-->
+<div class="col-md-9">
+    <div class="rightContent">
+        <div class="cvBox">
+            <div class="sepDiv">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 style="line-height: 32px">基本信息</h3>
+                    </div>
+                    <div class="col-md-6" style="text-align: right">
+                        <a class="btn btn-default" href="javascript:void(0)" style="display:none;" id="btnSave" onclick="saveGameInfo()"><i class="fa fa-refresh"></i>保存</a>
+                        <a class="btn btn-default" href="@Url.Action("GameSection", "UserGame")?id=@ViewBag.GameId" ><i class="fa fa-reply"></i> 返回</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cvUserInfo">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="font555 fontSize14">标题：</span>
+                                <input id="gameTitle" class="editInput" maxlength="40" type="text" value="" style="width: 70%" placeholder="字数限制40">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="height10"></div>
+                            <div class="col-md-6">
+                                <span class="font555 fontSize14">关键字：</span>
+                                <input id="gameKeyword" class="editInput" maxlength="10" value="" style="width: 200px" placeholder="字数限制10">
+                            </div>
+                            <div class="col-md-6">
+                                <span class="font555 fontSize14">内部排序：</span>
+                                <input id="gameSortNum" maxlength="3" class="editInput" type="number"  value="" style="width: 200px" placeholder="">
+                            </div> 
+                        </div>
+                    </div>
+
+                    </div>
+            </div>
+
+            <div class="sepDiv">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 style="line-height: 32px">内容</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="cvSelfCom">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <span class="fontSize14 font555">
+                                <!--自我评价内容请渲染在这里 请勿换行-->
+                                <textarea id="gameDesc" class="form-control" rows="20" cols="20" maxlength="2000" placeholder="请填写介绍(字数限制2000)" style="width: 100%"></textarea>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="height20"></div>
+
+            <div class="sepDiv">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 style="line-height: 32px">跳转设置</h3>
+                    </div>
+                    <div class="col-md-6" style="text-align: right">
+                        <a class="btn btn-default" href="javascript:void(0)" id="btnUpdateJump" style="display:none;" onclick="updateJump()"><i class="fa fa-refresh"></i> 单独保存</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cvCer">
+                <div class="height10"></div>
+                <div class="height10"></div>
+
+                <div id="appendCertificateEdit"></div>
+                <div id="certificateEdit"></div>
+                <div style="text-align: center;margin-top: 20px">
+                    <a class="btn btn-default" href="javascript:void(0)" onclick="addCer()"><i class="fa fa-plus"></i> 添加</a>
+                </div>
+                <div class="height20"></div>
+            </div>
+
+
+        </div>
+        <div class="height30"></div>
+    </div>
+</div>
+
+<!--<script src="~/Content/js/yifanToast.js"></script>-->
+<script type="text/javascript">
+    var GameId = @ViewBag.GameId;
+    var actmsg = "@ViewBag.actmsg";
+    var SectionId = @ViewBag.SectionId;
+
+   
+
+    //添加证书
+    function addCer() {
+        var form = '  <div style="border:1px solid #ddd;padding: 15px">'+
+                '                                    <form class="form-horizontal">'+
+                '                                        <div class="form-group">'+
+                '                                            <label class="col-sm-2 control-label font555 fontSize14">章节关键字</label>'+
+                '                                            <div class="col-sm-10">'+
+                '                                                <input type="text" class="form-control" id="jumpKeyword" maxlength="10" placeholder="请填写要跳转的章节关键字">' +
+                '                                            </div>'+
+                '                                        </div>'+
+                '                                        <div class="form-group">'+
+                '                                            <label class="col-sm-2 control-label font555 fontSize14">选项内容</label>'+
+                '                                            <div class="col-sm-10">'+
+                '                                                <input type="text" class="form-control" id="jumpContent" maxlength="50" placeholder="请填写选项内容">' +
+                '                                            </div>'+
+                '                                        </div>'+
+                '                                        <div style="text-align: center;margin-top: 10px">'+
+                '                                            <a class="btn btn-default confirmButton" style="width: 60px" href="javascript:void(0)" onclick="saveCer()">确定</a>' +
+                '                                            <a class="btn btn-default confirmButton" style="width: 60px" href="javascript:void(0)" onclick="cancelCer()">取消</a>' +
+                '                                        </div>'+
+                '                                    </form>'+
+                '                                </div>';
+        $('#certificateEdit').html(form);
+
+    }
+    var saveCerUrl = '@Url.Action("SaveCer", "ResumePage")';
+    //保存证书
+    function saveCer() {
+
+        var jumpKeyword = $.trim($("#jumpKeyword").val());
+        var jumpContent = $.trim($("#jumpContent").val());
+        if (jumpKeyword == "" || jumpContent == "" ) {
+            layer.alert("请填写完整信息", function (index) {
+                layer.close(index);
+            });
+        }
+        else {
+            var id = Date.parse( new Date());
+            var paramStr = JSON.stringify({keyword:jumpKeyword,desc:jumpContent});
+            $("#appendCertificateEdit").append('<div class="row" style="margin-bottom: 20px" id="jump_' + id + '">\
+                            <div class="col-md-10" style="line-height:34px;">\
+                                <div class="row">\
+                                    <div class="col-md-3">\
+                                        <span class="fontSize14">' + jumpKeyword + '</span>\
+                                    </div>\
+                                    <div class="col-md-9">\
+                                        <span class="fontSize14">' + jumpContent + '</span>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="col-md-2">\
+                                <input type="text" style="display:none;" class="jumpString" id="jumpStr_' + id + '" >\
+                                <button onclick="delCer(\'' + id + '\')" class="btn btn-danger" style="background-color: #fff;color:#e35b5a">\
+                                    <i class="fa fa-trash"></i> 删除\
+                                </button>\
+                            </div>\
+                        </div>');
+            $("#jumpStr_"+id).val(paramStr);
+            $('#certificateEdit').html("");
+        }
+
+    }
+
+    function cancelCer() {
+    
+        $('#certificateEdit').html("");
+    
+    } 
+
+    var delCerUrl = '@Url.Action("DelCer", "ResumePage")';
+    //删除证书
+    function delCer(id) {
+         $('#jump_' + id).remove(); 
+    }
+
+    function updateJump() {
+    
+        var param = [];
+        var method = "";
+        if( actmsg == "update")
+        {
+            method = "updateSectionChoice";
+            //param = [{keyword:"k3",desc:"单独更新section"},{keyword:"k4",desc:"单独更新section"}];
+            var jumpStrList = $('.jumpString');  
+
+            for(var i=0;i<jumpStrList.length;i++){
+                if($(jumpStrList[i]).val()==""){
+                    alert("字段内容不允许为空");
+                    return false;
+                }
+                //alert($(jumpStrList[i]).val());
+                param.push(JSON.parse($(jumpStrList[i]).val()));
+            }
+
+            //console.log(param);
+            
+            var args = JSON.stringify([SectionId,param]);
+            newTransaction(mainContractAddress, 0, method, args, function(t) {
+                layer.alert("保存成功", function (index) {
+                    layer.close(index);
+                    window.location.href = '@Url.Action("GameSection", "UserGame")?id=' + GameId;
+                });
+            });
+
+
+        }
+
+
+        
+    
+    
+    }
+
+
+
+    var getResumeUrl = '@Url.Action("GetResume", "ResumePage")';
+
+    $(function () {
+
+        if (actmsg == "update"){
+            loadGameDetail();
+            
+        }
+        else{
+            $("#btnSave").show();
+            $("#btnUpdateJump").hide();
+        }
+    });
+
+    var loadGameDetail = function () {
+        var args = JSON.stringify([SectionId]);
+        onSimulateCallClick(mainContractAddress, "getOwnSection", args, function (e) {
+            var item = JSON.parse(e.result);
+            if (item.title) {
+
+
+                $("#gameTitle").val(item.title);
+                $("#gameSortNum").val(item.sortNum);
+                $("#gameKeyword").val(item.keyword);
+                $("#gameDesc").val(item.content);
+                //loadInfo("gameDesc", item.desc);
+                $("#btnSave").show();
+
+                if (item.sectionChoices) {
+                    for (var i = 0; i < item.sectionChoices.length; i++) {
+                        var tmp = item.sectionChoices[i];
+                        var timeid = Date.parse( new Date());
+                        var paramStr = JSON.stringify({keyword:tmp.keyword,desc:tmp.desc});
+                        $("#appendCertificateEdit").append('<div class="row" style="margin-bottom: 20px" id="jump_' + timeid + '">\
+                            <div class="col-md-10" style="line-height:34px;">\
+                                <div class="row">\
+                                    <div class="col-md-3">\
+                                        <span class="fontSize14">' + tmp.keyword + '</span>\
+                                    </div>\
+                                    <div class="col-md-9">\
+                                        <span class="fontSize14">' + tmp.desc + '</span>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="col-md-2">\
+                                <input type="text" style="display:none;" class="jumpString" id="jumpStr_' + timeid + '" >\
+                                <button onclick="delCer(\'' + timeid + '\')" class="btn btn-danger" style="background-color: #fff;color:#e35b5a">\
+                                    <i class="fa fa-trash"></i> 删除\
+                                </button>\
+                            </div>\
+                        </div>');
+                        $("#jumpStr_"+timeid).val(paramStr);
+                    }
+                }
+
+                $("#btnUpdateJump").show();
+
+            } else {
+
+            }
+
+        });
+
+    };
+
+    function saveGameInfo() {
+
+        //
+        var title = $("#gameTitle").val();
+        var sortNum = $("#gameSortNum").val();
+        var keyword = $("#gameKeyword").val();
+        //var startSection = $("#gameStartSection").val();
+        var desc = $("#gameDesc").val();
+        var param = {};
+        var method = "";
+        var jumpParam = [];
+        if( actmsg == "update")
+        {
+            method = "updateSectionInfo";
+            param = {id:SectionId,gid:GameId,sortNum:sortNum,keyword:keyword,title:title,content:desc};
+        }
+        else {
+            method = "addSectionInfo";
+            param = {gid:GameId,sortNum:sortNum,keyword:keyword,title:title,content:desc};
+        }
+
+
+
+        var jumpStrList = $('.jumpString');  
+
+        for(var i=0;i<jumpStrList.length;i++){
+            if($(jumpStrList[i]).val()==""){
+                alert("字段内容不允许为空");
+                return false;
+            }
+            //alert($(jumpStrList[i]).val());
+            jumpParam.push(JSON.parse($(jumpStrList[i]).val()));
+        }
+
+
+        var args = JSON.stringify([param,jumpParam]);
+        newTransaction(mainContractAddress, 0, method, args, function(t) {
+            layer.alert("保存成功", function (index) {
+                layer.close(index);
+                window.location.href = '@Url.Action("GameSection", "UserGame")?id=' + GameId;
+            });
+        });
+    }
+
+
+
+    function loadInfoHtml(id, content) {
+        if (id == "" || id == null || id == "undefined") {
+            return;
+        }
+        else {
+            if (content != null && content != "null") {
+                $("#" + id).html(content);
+            }
+            else {
+                $("#" + id).html('');
+            }
+        }
+    }
+</script>

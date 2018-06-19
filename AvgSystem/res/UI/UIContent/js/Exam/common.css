@@ -1,0 +1,175 @@
+body{font-family: Times New Roman,Arial;font-size:12px;margin:0px auto;color:#444;}
+*html{background-image:url(about:blank);background-attachment:fixed;}/*这个是解决IE6闪动问题*/
+div,form,img,ul,ol,li,dl,dt,dd {margin:0;padding:0;border:0;}
+h1,h2,h3,h4,h5,h6 {margin:0; padding:0; font-size:12px; font-weight:normal;}
+table,td,tr,th{font-size:12px;}
+li{list-style-type:none;}
+table{ margin:0 auto;}
+img{vertical-align:top;}
+.Hidebox{display:none;}
+.Showbox{display:block;}
+.left{float:left;}
+.right{float:right;}
+
+/* 链接颜色 */
+a {color:#444;text-decoration:none;}
+a:hover {color:#c00;text-decoration:underline;}
+
+/* 颜色属性 [定义规则，小写c加颜色名称] */
+.cRed,a.cRed:link,a.cRed:visited{ color:#f00;}
+.cBlue,.cBlue:link,.cBlue:visited{color:#014CCC; text-decoration:none}.cBlue:hover{text-decoration:none;}
+.cBlue2,a.cBlue2:link,a.cBlue2:visited{color:#cc3366; text-decoration:none}a.cBlue2:hover{text-decoration:underline;color:#f60;}
+.cDRed,a.cDRed:link,a.cDRed:visited{ color:#c00;}
+.cyellow,a.cyellow:link,a.cyellow:visited{ color:#ff0;}
+.cblank,a.cblank:link,a.cblank:visited{ color:#059;}
+
+#top{width:100%;height:auto;margin:0px auto;background:url(../../images/Exam/gd.png) repeat-x 0px 0px;}
+#top .tps{width:1000px;margin:0px auto;height:37px;text-align:center;color:#666;font-size:14px;}
+#top .tps .add-F{width:78px;height:26px;background:url(../../images/Exam/gd.png) no-repeat 0px -640px;border:none;color:#fff;font-weight:bold;cursor:pointer;font-size:12px;margin-top:5px;}
+#top .tps a{font-size:12px;color:#059;text-decoration:underline;margin-left:10px;display:inline;}
+#top .tps a:hover{color:#f30;}
+#top  a.close{width:9px;height:9px;position:absolute;top:15px;right:20px;background:url(../../images/Exam/gd.png) no-repeat -231px -105px;overflow:hidden;text-indent:-9999px;font-size:0px;cursor:pointer;}
+#top  a.close:hover{background:url(../../images/Exam/gd.png) no-repeat -217px -105px;}
+
+#menu{width:100%;height:auto;margin:0px auto;background:url(../../images/Exam/gd.png) repeat-x 0px -40px;}
+#menu .headbox{ width:1000px;margin:0px auto;height:auto;}
+#menu .headbox .logo{width:auto;float:left;}
+#menu .headbox .lst{width:28px;height:13px;float:left;background:url(../../images/Exam/gd.png) no-repeat 0px -96px;text-indent:-9999px;font-size:0px;overflow:hidden;margin-left:5px;display:inline;margin-top:15px;}
+
+#headNav2{width:auto;height:auto;float:left;margin-left:10px;display:inline;font-size:12px;}
+#headNav3{font-size:12px;flaot:right;}
+#headNav{color:#FFFFFF;float:left;width:auto;height:auto;text-align:left;}
+#headNav li.current{background:#115fa0;}
+#headNav li.top-cur{}
+#headNav li.current a,#headNav li.top-cur a{padding:0px 15px;}
+#headNav li.current a:link,#headNav li.current a:visited{color:#fff;}
+#headNav li.current a:hover,#headNav li.top-cur a:hover{background:#115fa0;}
+
+#headNav li{float:left;text-align:center;position:relative;z-index:10;display:inline-block;z-index:100;margin-left:1px;cursor:pointer;line-height:49px;}
+#headNav a{float:left;display:inline-block;color:#fff;text-decoration:none; font-weight:normal}
+#headNav span{display:block;}
+#headNav a:hover,#headNav .on a{FLOAT:left; }
+#headNav .on span{color:#059;background:url(../../images/Exam/gd.png) right -796px no-repeat #fff;position:relative;left:0px;z-index:2;float:left;padding:0px 19px 0px 14px;cursor:pointer;border:1px solid #115fa0;border-bottom:none;line-height:48px;}
+#headNav .out span{color:#fff;background:url(../../images/Exam/gd.png) right -667px no-repeat;position:relative;left:0px;z-index:2;float:left;padding:0px 20px 0px 15px;cursor:pointer;}
+
+#headNav .on2 span{color:#fff;background:url(../../images/Exam/gd.png) right -843px no-repeat #115fa0;position:relative;left:0px;z-index:2;float:left;padding:0px 20px 0px 15px;cursor:pointer;}
+#headNav .out2 span{color:#fff;background:url(../../images/Exam/gd.png) right -667px no-repeat;position:relative;left:0px;z-index:2;float:left;padding:0px 20px 0px 15px;cursor:pointer;}
+
+#headNav .navp{width:auto;float:left;position:absolute;display:none;left:0px;top:49px;z-index:-110;background:#bfdbef;padding:0px 2px 2px 0px;}
+#headNav .navp2{width:auto;float:left;position:absolute;display:none;right:0px;top:49px;z-index:-110;}
+#headNav UL.navlist{width:200px;float:left;display:inline;border:1px solid #0d558d;background:#fff;border-top:none;padding:10px;}
+#headNav UL.navlist LI{width:48%;display:inline;height:auto;font-size:12px;line-height:22px;text-align:left;float:left;}
+#headNav UL.navlist2{width:120px;}
+#headNav UL.navlist2 LI{width:100%;}
+#headNav UL.navlist LI a{color:#666;width:90%;padding-left:10px;}
+#headNav UL.navlist LI a:hover{color:#fff;background:#1f8dc0;}
+#headNav UL.navlist LI a.km{color:#666;width:83%;padding-left:20px;background:url(../../images/Exam/gd.png) no-repeat 8px -121px;}
+#headNav UL.navlist LI a.km:hover{color:#fff;background:url(../../images/Exam/gd.png) no-repeat 8px -121px #1f8dc0;}
+#headNav UL.navlist3{width:83px;float:left;display:inline;background:#11578b;padding:5px 0px 10px;filter:alpha(opacity=90);-moz-opacity:90;opacity:90;opacity:0.9!important;}
+#headNav UL.navlist3 LI{width:100%;display:inline;height:auto;font-size:12px;line-height:22px;text-align:left;float:left;}
+#headNav UL.navlist3 LI a{color:#fff;width:82%;padding-left:13px;}
+#headNav UL.navlist3 LI a:hover{color:#fff;background:#0c5385;}
+#headNav li .num{background:url(../../images/Exam/gd.png) no-repeat 0px -676px;width:21px;text-align:center;float:left;margin-right:5px;display:inline;color:#2a85c2;}
+#headNav li .num2{background:url(../../images/Exam/gd.png) no-repeat -30px -676px;width:21px;text-align:center;float:left;margin-right:5px;display:inline;color:#fff;font-weight:bold;}
+#headNav .out{z-index:0}
+#headNav .on .navp,#headNav .on2 .navp{display:block;}
+#headNav .on .navp2,#headNav .on2 .navp2{display:block;}
+#headNav .out .navp,#headNav .out .navp2{display:none;}
+#headNav .Fdb{background:url(../../images/Exam/gd.png) no-repeat 0px -730px;padding-left:19px;}
+#headNav .on2 span.Fdb{background:url(../../images/Exam/gd.png) no-repeat 10px -730px #115fa0;}
+#headNav .navp .Feedback{width:109px;height:21px;background:url(../../images/Exam/gd.png) no-repeat 0px -781px;text-align:-9999px;font-size:0px;top:-20px;}
+
+
+.wrap{width:100%;height:auto;}
+
+.h10{width:100%;height:10px;background:#fff;}
+.mainBody{width:990px;margin:0px auto;background:url(../../images/Exam/left_box.png) repeat-y #fff 5px;height:auto;position:relative;padding:0px 5px 15px;}
+.leftside{width:200px;height:auto;float:left;background:url(../../images/Exam/gd.png) no-repeat 0px -1021px;padding-top:1px;padding-right:1px;}
+.leftside ul.nav{width:100%;float:left;height:auto;font-size:14px;}
+.leftside ul.nav li{width:100%;float:left;height:auto;}
+.leftside ul.nav .h1-bg{background:url(../../images/Exam/gd.png) no-repeat 0px -219px;width:100%;float:left;}
+.leftside ul.nav ul.navigation{width:100%;float:left;font-size:12px;padding-bottom:2px;}
+.leftside ul.nav ul.navigation li{width:100%;height:auto;float:left;margin-top:2px;background:url(../../images/Exam/gd.png) no-repeat -45px -978px;}
+.leftside ul.nav ul.navigation li a{width:186px;height:33px;float:left;color:#7e7e7e;cursor:pointer;padding-left:14px;}
+.leftside ul.nav ul.navigation li a:hover{background:url(../../images/Exam/gd.png) no-repeat 0px -181px;background:url(../../images/Exam/gd.png) no-repeat 0px -328px;text-decoration:none;color:#f60;}
+.leftside ul.nav ul.navigation li.left-line{background:none;}
+
+.leftside ul.nav span{float:left;padding:10px 0px 0px 30px;height:23px;}
+.leftside ul.nav .expanded{width:100%;height:35px;float:left;background:url(../../images/Exam/gd.png) no-repeat 0px -256px;cursor:pointer;}
+.leftside ul.nav .expanded:hover{background:url(../../images/Exam/gd.png) no-repeat 0px -140px;}
+.leftside ul.nav .expanded,.leftside ul.nav .collapsed:hover{text-decoration:none;}
+.leftside ul.nav .collapsed{width:100%;height:35px;float:left;background:url(../../images/Exam/gd.png) no-repeat 0px -219px;cursor:pointer;}
+.leftside ul.nav .collapsed:hover{background:url(../../images/Exam/gd.png) no-repeat 90px -776px;}
+.leftside ul.nav .expanded2{width:200px;height:33px;float:left;background:url(../../images/Exam/gd.png) no-repeat 0px -293px;cursor:pointer;}
+.leftside ul.nav .expanded2:hover{background:url(../../images/Exam/gd.png) no-repeat 0px -328px;text-decoration:none;color:#333;}
+.leftside ul.nav .heading{float:left;margin-left:15px;font-weight:bold;display:inline;}
+.leftside ul.nav .bg{background:url(../../images/Exam/gd.png) no-repeat 0px -328px;text-decoration:none;color:#059;}
+
+.leftside ul.nav .nvbg{background:url(../../images/Exam/gd.png) no-repeat -218px -182px;}
+.leftside ul.nav .nvbg1{background:url(../../images/Exam/gd.png) no-repeat -219px -219px;}
+.leftside ul.nav .nvbg2{background:url(../../images/Exam/gd.png) no-repeat -217px -252px;}
+.leftside ul.nav .nvbg3{background:url(../../images/Exam/gd.png) no-repeat -217px -295px;}
+.leftside ul.nav .nvbg4{background:url(../../images/Exam/gd.png) no-repeat -216px -338px;}
+.leftside ul.nav .nvbg5{background:url(../../images/Exam/gd.png) no-repeat -217px -382px;}
+.leftside ul.nav .nvbg6{background:url(../../images/Exam/gd.png) no-repeat -219px -426px;}
+.leftside ul.nav .nvbg7{background:url(../../images/Exam/gd.png) no-repeat 0px -460px;}
+.leftside ul.nav .nvbg8{background:url(../../images/Exam/gd.png) no-repeat -215px -462px;}
+.leftside ul.nav .nvbg9{background:url(../../images/Exam/gd.png) no-repeat -216px -506px;}
+.leftside ul.nav .nvbg10{background:url(../../images/Exam/gd.png) no-repeat -217px -549px;}
+.leftside ul.nav .nvbg11{background:url(../../images/Exam/gd.png) no-repeat -218px -587px;}
+.leftside ul.nav .nvbg12{background:url(../../images/Exam/gd.png) no-repeat 0px -410px;}
+.leftside ul.nav .nvbg13{background:url(../../images/Exam/gd.png) no-repeat 0px -501px;}
+.leftside ul.nav .nvbg14{background:url(../../images/Exam/gd.png) no-repeat -217px -718px;}
+.leftside ul.nav .nvbg15{background:url(../../images/Exam/gd.png) no-repeat 0px -538px;}
+.leftside ul.nav .nvbg16{background:url(../../images/Exam/gd.png) no-repeat -218px -760px;}
+.leftside ul.nav .nvbg17{background:url(../../images/Exam/gd.png) no-repeat -220px -628px;}
+.leftside ul.nav .nvbg18{background:url(../../images/Exam/gd.png) no-repeat 0px -606px;}
+.leftside ul.nav .nvbg19{background:url(../../images/Exam/gd.png) no-repeat 0px -574px;}
+
+.leftside ul.nav .nvbg20{background:url(../../images/Exam/gd.png) no-repeat 0px -906px;}
+.leftside ul.nav .nvbg21{background:url(../../images/Exam/gd.png) no-repeat 0px -854px;}
+.leftside ul.nav .nvbg22{background:url(../../images/Exam/gd.png) no-repeat 0px -977px;}
+.leftside ul.nav .nvbg23{background:url(../../images/Exam/gd.png) no-repeat 0px -808px;}
+.leftside ul.nav .nvbg24{background:url(../../images/Exam/gd.png) no-repeat -218px -135px;}
+.leftside ul.nav .nvbg25{background:url(../../images/Exam/gd.png) no-repeat -215px -906px;}
+.leftside ul.nav .nvbg26{background:url(../../images/Exam/gd.png) no-repeat 0px -947px;}
+.leftside ul.nav .nvbg27{background:url(../../images/Exam/gd.png) no-repeat -218px -946px;}
+
+
+.rightside{width:750px;height:auto;float:right;}
+.rightside h1{width:100%;height:45px;line-height: 200%;;float:left;font-family: Times New Roman,微软雅黑,黑体;color:#4d4d4d;font-size:20px;margin-top:10px;}
+
+.footer{width:990px;height:auto;text-align:center;color:#888;line-height:22px;border-top:1px solid #52abd8;margin:0px auto;padding:15px 0px;}
+
+.kc_2{width:97px;height:172px;position:fixed;_position:absolute;top:100px;_top:expression(documentElement.scrollTop+100);right:8px;}
+.kc_2 .kc_f{width:97px;height:172px;position:relative;float:left;}
+.kc_2 .kc_f img{z-index:9998;}
+.kc_2 .kc_f .close{width:16px;height:18px;position:absolute;cursor:pointer;right:2px;top:0px;;z-index:9999;background:url(../../images/Exam/gd.png) no-repeat 0px -159px;}
+
+.fkkuang{width:49px;height:52px;margin:0px auto;margin-top:10px;}
+
+
+/*提示框二*/
+.tsk-2{width:auto;height:auto;position:absolute;}
+.tsk-2 .tsk-box{width:244px;height:auto;float:left;}
+.tsk-2 .tsk-box .tsk-t{width:100%;height:17px;float:left;background:url(../../images/Exam/center_gd.png) no-repeat 0px 0px;overflow:hidden;}
+.tsk-2 .tsk-box .tsk-txt{float:left;width:210px;padding:0px 15px;color:#727272;line-height:20px;background:url(../../images/Exam/center_gd.png) no-repeat -2px -60px #f0fafc;border-left:2px solid #4494cc;border-right:2px solid #4494cc;}
+.tsk-2 .tsk-box .tsk-txt li{width:100%;height:auto;float:left;}
+.tsk-2 .tsk-box .tsk-txt a{float:right;color:#059;margin-left:10px;display:inline;}
+.tsk-2 .tsk-box .tsk-b{width:100%;height:9px;float:left;background:url(../../images/Exam/center_gd.png) no-repeat 0px -21px;overflow:hidden;}
+.tsk-2 .tsk-box .tsk-txt input{width:70px;height:19px;float:right;background:url(../../images/Exam/center_gd.png) no-repeat -153px -32px;cursor:pointer;border:none;}
+
+.tsk-2 .close{width:10px;height:7px;position:absolute;text-indent:-9999px;font-size:0px;cursor:pointer;top:10px;right:10px;z-index:999;}
+.tsk-2 .tsk-box .tsk-txt .pt2{color:#666;border-top:1px solid #ccc;padding-top:5px;margin-top:5px;}
+.tsk-2 .tsk-box .tsk-txt .pt2 a{float:left;text-decoration:underline}
+
+.tsk-2 .t-left{background:url(../../images/Exam/center_gd.png) no-repeat -54px -11px;top:0px;left:0px;}
+.tsk-2 .t-right{background:url(../../images/Exam/center_gd.png) no-repeat -67px -11px;top:0px;right:0px;}
+.tsk-2 .b-left{background:url(../../images/Exam/center_gd.png) no-repeat -54px 0px;bottom:0px;left:0px;}
+.tsk-2 .b-right{background:url(../../images/Exam/center_gd.png) no-repeat -67px 0px;bottom:0px;right:0px;}
+.tsk-2 .jt{width:11px;height:18px;position:absolute;background:url(../../images/Exam/center_gd.png) no-repeat 0px -39px;top:50%;left:-9px;clear:both;margin-top:-12px;}
+.tsk-2 .jt2{width:19px;height:11px;position:absolute;background:url(../../images/Exam/center_gd.png) no-repeat -17px -40px;top:-9px;left:50%;clear:both;margin-left:-9px;}
+.tsk-2 .jt3{width:19px;height:11px;position:absolute;background:url(../../images/Exam/center_gd.png) no-repeat -74px -37px;bottom:-9px;left:50%;clear:both;margin-left:-9px;}
+.tsk-2 .jt4{width:11px;height:19px;position:absolute;background:url(../../images/Exam/center_gd.png) no-repeat -49px -35px;top:50%;right:-9px;clear:both;margin-top:-12px;}
+
+.bigti{width:1000px;margin:0px auto;height:auto;position:relative;font:normal 24px/35px "微软雅黑"}

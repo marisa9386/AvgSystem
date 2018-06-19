@@ -1,0 +1,168 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "文字冒险模拟器";
+}
+
+<link href="~/res/UI/Content/css/homeindex.css" rel="stylesheet" />
+<style>
+    .newa {
+        color:#2a6496;
+    }
+        .newa:hover {
+            color:#FF6000;
+        }
+    .gameItem {
+        height:125px;
+    }
+
+</style>
+<!--内容填充-->
+<!--轮播图 begin-->
+<section class="maxSize hidden-xs">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div style="background-image: url(/res/UI/UIContent/img/banner1.jpg);height: 450px;background-size: cover;background-position: center top;background-repeat: no-repeat"></div>
+                <div class="carousel-caption">
+                </div>
+            </div>
+            <div class="item">
+                <div style="background-image: url(/res/UI/UIContent/img/banner1.jpg);height: 450px;background-size: cover;background-position: center top;background-repeat: no-repeat">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+
+        </div>
+    </div>
+</section>
+<!--轮播图 end-->
+
+<!--旅者酒馆 begin-->
+<section class="container">
+    <div class="height30"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>旅者酒馆</h3>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="@Url.Action("Index","GamePage")" class="more">更多 ></a>
+        </div>
+    </div>
+    <div class="bottom20"></div>
+    <div class="recruit">
+        <div class="height40"></div>
+
+        <div class="row" id="gameArea">
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+
+</section>
+<!--企业热聘 end-->
+
+<div class="height50"></div>
+
+
+
+
+
+
+
+
+
+<!--内容填充-->
+<script type="text/javascript">
+    //jobArea
+    var laodGameCondition = {
+        title: "",
+        page: 1,
+        rows: 4,
+        sidx: "likes",
+        sord: "desc",
+        records:0
+    };
+
+    var gameDetailUrl = '@Url.Action("Detail", "GamePage")';
+    var loadGame = function () {
+
+
+        var args = JSON.stringify([laodGameCondition]);
+        onSimulateCallClick(mainContractAddress, "getGames", args, function (e) {
+            var result = JSON.parse(e.result);
+            var data = result.List;
+
+            var $gameArea = $('#gameArea');
+            $gameArea.empty();
+
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var item = data[i];
+                    var gameType = "自制";
+                    if (item.gameType == 1) {
+                        gameType = "官方";
+                    }
+                    var pubTime = timeStamp2String2(item.pubTime);
+                    var cost = item.cost;
+                    if (cost == 0) {
+                        cost = "免费";
+                    } else {
+                        cost = cost;
+                    }
+                    var gameDesc = item.desc;
+                    if (gameDesc.length > 80)
+                    {
+                        gameDesc = gameDesc.substring(0, 80) + "...";
+                    }
+                    $gameArea.append('<div class="col-md-4 bottom50 gameItem" data-id="' + item.id + '">\
+                            <div class="row bottom20">\
+                                <div class="col-md-12">\
+                                    <div class="btn btn-default jobButton">\
+                                        ' + (gameType || '') + '\
+                                    </div>\
+                                    <span class="recruitTitle"><a class="newa" href="' + gameDetailUrl + '?id=' + item.id + '">' + (item.title || '') + '</a></span>\
+                                </div>\
+                            </div>\
+                            <div class="row bottom15">\
+                                <div class="col-md-6">\
+                                    <div class="textLocation"><i class="fa fa-yen colorFont2  fontBig"></i> <span> 价格：' + (cost || '') + '</span></div>\
+                                </div>\
+                                <div class="col-md-6">\
+                                    <div class="textLocation"><i class="fa fa-bookmark colorFont2 fontBig"></i> <span> 收入：' + item.income + '</span></div>\
+                                </div>\
+                            </div>\
+                            <div class="row bottom15">\
+                                <div class="col-md-6">\
+                                    <div class="textLocation"><i class="fa fa-clock-o colorFont2  fontBig"></i> <span> 发布：' + (pubTime || '') + '</span></div>\
+                                </div>\
+                                <div class="col-md-6">\
+                                    <div class="textLocation"><i class="fa fa-user-circle colorFont2  fontBig2"></i> <span> 好评数：' + item.likes + '</span></div>\
+                                </div>\
+                            </div>\
+                            <div class="row">\
+                                <div class="col-md-12">\
+                                    <div class="textLocation lineheight2"><i class="fa fa-map-marker colorFont2  fontBig2"></i> <span> 简介：' + (gameDesc || '') + '</span></div>\
+                                </div>\
+                            </div>\
+                        </div>');
+                }
+            } else {
+                $gameArea.append('抱歉，暂无相关信息！');
+            }
+
+        });
+
+    };
+
+
+    $(function () {
+        loadGame();
+    });
+</script>

@@ -1,0 +1,207 @@
+﻿@{
+    Layout = "~/Views/Shared/_User.cshtml";
+    ViewBag.Title = "文字冒险模拟器";
+}
+<meta id="pageLabel" data-page="UserGame" />
+<style>
+    body {
+        background-color: #eee;
+        height: 100%;
+    }
+        .newa {
+        color:#2a6496;
+    }
+        .newa:hover {
+            color:#FF6000;
+        }
+    .gameItem {
+        border-bottom:1px solid rgb(228, 231, 237);
+    }
+</style>
+
+<!--右侧正文-->
+<div class="col-md-9">
+    <div class="rightContent" style="min-height: 800px;">
+        <div class="height8"></div>
+        <!--课程分类导航条 begin-->
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="nav nav-pills mailNavCategory">
+                    <li class="tagType">搜索类型：</li>
+                    <li role="presentation" class="categoryActive"><a href="javascript:void(0);" onclick="$.course.setSearchType('pubTime', this);">发布时间</a></li>
+                    <li role="presentation"><a href="javascript:void(0);" onclick="$.course.setSearchType('income', this);">收入</a></li>
+                    <li role="presentation"><a href="javascript:void(0);" onclick="$.course.setSearchType('likes', this);">好评</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: 0px" onclick="addGame();">添加故事</button>
+            </div>
+        </div>
+
+        <div class="height20"></div>
+            <!--课程分类导航条 end-->
+
+            <div id="gameList" class="row">
+
+            </div>
+
+            <!--分页组件 begin-->
+            <div class="text-center">
+                <div class="page" id="page6"></div>
+            </div>
+            <!--分页组件 end-->
+
+            <div class="height30"></div>
+        </div>
+</div>
+
+<script>
+    //加载数据
+    var gameDetailUrl = '@Url.Action("Detail", "GamePage")';
+
+    (function ($) {
+        var param = {
+            rows: 16,
+            page: 1,
+            sidx: "pubTime",
+            sord: "desc",
+            records:0,
+            title:""
+        };
+        $.course = {
+            requestParam: param,
+            setSearchType: function (sidx, t) {
+                $.course.requestParam.sidx = sidx;
+
+                $(t).parent().parent().children().removeClass('categoryActive');
+                $(t).parent().addClass('categoryActive');
+                $.course.requestParam.page = 1;
+                $.course.init();
+            },
+            setpage: function (pagecount, t) {
+                $.course.requestParam.page = pagecount;
+
+                $(t).parent().parent().children().removeClass('categoryActive');
+                $(t).parent().addClass('categoryActive');
+
+                $.course.init();
+            },
+            buildCourseList: function (data) {
+
+                var $gameArea = $('#gameList');
+                $gameArea.empty();
+                var updateGameDetailUrl = '@Url.Action("UpdateGame", "UserGame")';
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var item = data[i];
+                        var pubTime = timeStamp2String2(item.pubTime);
+                        var cost = item.cost;
+                        if (cost == 0) {
+                            cost = "免费";
+                        } else {
+                            cost = cost;
+                        }
+                        var gameDesc = item.desc;
+                        if (gameDesc.length > 80) {
+                            gameDesc = gameDesc.substring(0, 80) + "...";
+                        }
+
+                        var isPub = "未发布";
+                        if (item.isPub == 1) {
+                            isPub = "发布";
+                        }
+
+                        $gameArea.append('<div class="col-md-12 bottom15 gameItem" data-id="' + item.id + '">\
+                            <div class="row">\
+                                <div class="col-md-10">\
+                                    <div class="row bottom20">\
+                                        <div class="col-md-12">\
+                                            <div class="btn btn-default jobButton">\
+                                                ' + (isPub || '') + '\
+                                            </div>\
+                                            <span class="recruitTitle"><a class="newa" href="' + updateGameDetailUrl + '?id=' + item.id + '">' + (item.title || '') + '</a></span>\
+                                        </div>\
+                                    </div>\
+                                    <div class="row bottom15">\
+                                        <div class="col-md-3">\
+                                            <div class="textLocation"><i class="fa fa-yen colorFont2  fontBig"></i> <span> 价格：' + (cost || '') + '</span></div>\
+                                        </div>\
+                                        <div class="col-md-3">\
+                                            <div class="textLocation"><i class="fa fa-bookmark colorFont2 fontBig"></i> <span> 收入：' + item.income + '</span></div>\
+                                        </div>\
+                                        <div class="col-md-3">\
+                                            <div class="textLocation"><i class="fa fa-clock-o colorFont2  fontBig"></i> <span> 发布：' + (pubTime || '') + '</span></div>\
+                                        </div>\
+                                        <div class="col-md-3">\
+                                            <div class="textLocation"><i class="fa fa-user-circle colorFont2  fontBig2"></i> <span> 好评数：' + item.likes + '</span></div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="row">\
+                                        <div class="col-md-12">\
+                                            <div class="textLocation lineheight2"><i class="fa fa-map-marker colorFont2  fontBig2"></i> <span> 简介：' + (gameDesc || '') + '</span></div>\
+                                            <div class="height8"></div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="col-md-2">\
+                                        <div class="text-center">\
+                                            <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: 0px" onclick="updateGame(\'' + item.id + '\');">修改概要</button>\
+                                            <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: 10px" onclick="goSection(\'' + item.id + '\');">修改章节</button>\
+                                        </div>\
+                                </div>\
+                            </div>\
+                        </div>');
+                    }
+                } else {
+                    $gameArea.append('抱歉，暂无相关信息！');
+                }
+            },
+            init: function () {
+
+                var args = JSON.stringify([$.course.requestParam]);
+
+                onSimulateCallClick(mainContractAddress, "getOwnGames", args, function (e) {
+                    var result = JSON.parse(e.result);
+                    $('#page6').html("");
+                    MyPage(result.Page);
+                    var courseListHTML = $.course.buildCourseList(result.List);
+                  }
+                );
+
+            }
+        };
+        $(function () {
+            $.course.init();
+
+        });
+    })(jQuery);
+
+    function MyPage(Page) {
+        $.mypage("page6", Page.page, Page.total, function (page) {
+            $.course.setpage(page, this);
+            updatePage(page);
+        });
+    }
+    function updatePage(now) {
+        $.mypage("page6", now, Page.total, function (page) {
+            $.course.setpage(page, this);
+            updatePage(page);
+        });
+    }
+
+
+    var updateGame = function (id) {
+        window.location.href = '@Url.Action("UpdateGame", "UserGame")?id=' + id;
+    };
+
+    var addGame = function (id) {
+        window.location.href = '@Url.Action("UpdateGame", "UserGame")?id=-1';
+    };
+
+    var goSection = function (id) {
+        window.location.href = '@Url.Action("GameSection", "UserGame")?id=' + id;
+    };
+
+
+
+</script>

@@ -1,0 +1,110 @@
+.RadInput_CNPC,.RadInputMgr_CNPC{
+font:normal 12px "Segoe UI",Arial,Helvetica,sans-serif
+}
+html body .RadInput_CNPC .riTextBox,html body .RadInputMgr_CNPC{
+border-color:#9babc2;
+background:#fff;
+color:#00000;
+font:normal 12px "Segoe UI",Arial,Helvetica,sans-serif
+}
+html body .RadInput_Office2010Blue
+{
+    height: 22px;
+}
+
+html body .RadInput_CNPC .riEmpty,html body .RadInput_Empty_CNPC{
+color:#8d8d8d
+}
+html body .RadInput_CNPC .riHover,html body .RadInput_Hover_CNPC,html body .RadInput_CNPC .riFocused,html body .RadInput_Focused_CNPC{
+border-color:#f3d64a;
+background-color:#f6f6f6
+}
+html body .RadInput_CNPC .riRead,html body .RadInput_Read_CNPC{
+border-color:#ccdbed
+}
+html body .RadInput_CNPC .riDisabled,html body .RadInput_Disabled_CNPC{
+color:#8ba0bc;
+border-color:#9babc2;
+cursor:default
+}
+html body .RadInput_CNPC .riError,html body .RadInput_Error_CNPC{
+border-color:#e50000 #dc643f #ea8541;
+background:#f6f6f6 100% -298px no-repeat url('Input/sprite.gif');
+color:#b32d34
+}
+.RadForm.rfdTextbox .RadInput_CNPC .riError[type="text"],.RadForm.rfdTextbox .RadInput_Error_CNPC[type="text"]{
+border-color:#b32d34 #dc643f #ea8541;
+background:white 100% -298px no-repeat url('Input/sprite.gif');
+color:#b32d34
+}
+.RadInput_CNPC a{
+background:transparent no-repeat url('Input/sprite.gif')
+}
+.RadInput_CNPC .riBtn a,.RadInput_CNPC a.riButton
+{
+width:21px;
+height:18px;
+line-height:18px;
+background-position:3px 6px
+}.RadInput_CNPC .riBtn a:hover,.RadInput_CNPC a.riButton:hover{
+background-position:3px -44px
+}
+.RadInput_CNPC .riSpin a
+{
+height:11px;
+line-height:10px
+}
+.RadInput_CNPC a.riDown
+{
+height:11px;
+line-height:10px
+}
+.RadInput_CNPC a.riUp{
+height:11px;
+line-height:10px;
+background-position:0 -96px
+}
+.RadInput_CNPC a.riUp:hover
+{
+background-position:0 -146px
+}
+.RadInput_CNPC a.riDown
+{
+background-position:0 -198px;
+margin-top:0
+}
+.RadInput_CNPC a.riDown:hover
+{
+background-position:0 -247px
+}
+.RadInput_CNPC .riLabel
+{
+color:#384e73
+}
+html body .RadInputRTL_CNPC .riError,html body .RadInputRTL_Error_CNPC
+{
+background-position:3px -298px
+}
+.RadForm.rfdTextbox .RadInputRTL_CNPC .riError[type="text"],.RadForm.rfdTextbox .RadInputRTL_Error_CNPC[type="text"]
+{
+background-position:3px -298px
+}
+
+ .RadInput_CNPC input.riTextBox {
+
+	border-color: rgb(171, 171, 171);
+
+}
+
+ .RadInput_CNPC input.riHover {
+
+	border-color: rgb(243, 214, 74);
+
+}
+
+ .RadInput_CNPC input.riFocused {
+
+	border-color: rgb(194, 139, 49);
+
+}
+

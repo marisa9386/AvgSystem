@@ -1,0 +1,168 @@
+﻿@{
+    Layout = "~/Views/Shared/_User.cshtml";
+    ViewBag.Title = "文字冒险模拟器";
+}
+<meta id="pageLabel" data-page="UserGame" />
+<style>
+    body {
+        background-color: #eee;
+        height: 100%;
+    }
+        .newa {
+        color:#2a6496;
+    }
+        .newa:hover {
+            color:#FF6000;
+        }
+    .gameItem {
+        border-bottom:1px solid rgb(228, 231, 237);
+    }
+</style>
+
+<!--右侧正文-->
+<div class="col-md-9">
+    <div class="rightContent" style="min-height: 800px;">
+        <div class="height8"></div>
+        <!--课程分类导航条 begin-->
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: 0px" onclick="addSection();">添加章节</button>
+                <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: 0px" onclick="returnGame();">返回</button>
+            </div>
+        </div>
+
+        <div class="height20"></div>
+            <!--课程分类导航条 end-->
+
+            <div id="gameList" class="row">
+
+            </div>
+
+            <!--分页组件 begin-->
+            <div class="text-center">
+                <div class="page" id="page6"></div>
+            </div>
+            <!--分页组件 end-->
+
+            <div class="height30"></div>
+        </div>
+</div>
+
+<script>
+    var GameId = @ViewBag.GameId;
+
+    (function ($) {
+        var param = {
+            rows: 10,
+            page: 1,
+            sidx: "sortNum",
+            sord: "asc",
+            records:0,
+            title:""
+        };
+        $.course = {
+            requestParam: param,
+            setSearchType: function (sidx, t) {
+                $.course.requestParam.sidx = sidx;
+
+                $(t).parent().parent().children().removeClass('categoryActive');
+                $(t).parent().addClass('categoryActive');
+                $.course.requestParam.page = 1;
+                $.course.init();
+            },
+            setpage: function (pagecount, t) {
+                $.course.requestParam.page = pagecount;
+
+                $(t).parent().parent().children().removeClass('categoryActive');
+                $(t).parent().addClass('categoryActive');
+
+                $.course.init();
+            },
+            buildCourseList: function (data) {
+
+                var $gameArea = $('#gameList');
+                $gameArea.empty();
+                var updateSectionDetailUrl = '@Url.Action("UpdateSection", "UserGame")';
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var item = data[i];
+                        //var pubTime = timeStamp2String2(item.pubTime);
+
+
+
+                        $gameArea.append('<div class="col-md-12 bottom15 gameItem" data-id="' + item.id + '">\
+                            <div class="row">\
+                                <div class="col-md-10">\
+                                    <div class="row bottom20">\
+                                        <div class="col-md-6">\
+                                            <span class="recruitTitle">标题：<a class="newa" href="' + updateSectionDetailUrl + '?id=' + item.id + '&gid=' + GameId + '">' + (item.title || '') + '</a></span>\
+                                        </div>\
+                                        <div class="col-md-6">\
+                                            <div class="textLocation"><i class="fa fa-map-marker colorFont2  fontBig"></i> <span> 关键字：' + (item.keyword || '') + '</span></div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="col-md-2">\
+                                    <div class="row bottom20">\
+                                        <div class="text-center">\
+                                            <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: -10px" onclick="updateSection(\'' + item.id + '\');">修改章节</button>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="height8"></div>\
+                            </div>\
+                        </div>');
+                    }
+                } else {
+                    $gameArea.append('抱歉，暂无相关信息！');
+                }
+            },
+            init: function () {
+
+                var args = JSON.stringify([GameId,$.course.requestParam]);
+
+                onSimulateCallClick(mainContractAddress, "getOwnSections", args, function (e) {
+                    var result = JSON.parse(e.result);
+                    $('#page6').html("");
+                    MyPage(result.Page);
+                    var courseListHTML = $.course.buildCourseList(result.List);
+                  }
+                );
+
+            }
+        };
+        $(function () {
+            $.course.init();
+
+        });
+    })(jQuery);
+
+    function MyPage(Page) {
+        $.mypage("page6", Page.page, Page.total, function (page) {
+            $.course.setpage(page, this);
+            updatePage(page);
+        });
+    }
+    function updatePage(now) {
+        $.mypage("page6", now, Page.total, function (page) {
+            $.course.setpage(page, this);
+            updatePage(page);
+        });
+    }
+
+
+    var updateSection = function (id) {
+        window.location.href = '@Url.Action("UpdateSection", "UserGame")?id=' + id + '&gid=' + GameId;
+    };
+
+    var addSection = function () {
+        window.location.href = '@Url.Action("UpdateSection", "UserGame")?id=-1&gid=' + GameId;
+    };
+
+    var returnGame = function () {
+        window.location.href = '@Url.Action("Index", "UserGame")';
+    };
+
+
+
+</script>

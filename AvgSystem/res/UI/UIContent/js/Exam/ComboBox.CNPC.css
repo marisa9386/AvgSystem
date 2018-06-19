@@ -1,0 +1,540 @@
+.RadComboBox_CNPC {
+	color: #000000;
+	font: normal 12px/16px "Segoe UI",Arial,Helvetica,sans-serif
+}
+
+.RadComboBox_CNPC .rcbInputCell,.RadComboBox_CNPC .rcbArrowCell {
+	background-image: url('Common/radFormSprite.png');
+	_bground-image: url('Common/radFormSpriteIE6.png')
+}
+
+.RadComboBox_CNPC .rcbInputCellLeft {
+	background-position: 0 0
+}
+
+.RadComboBox_CNPC .rcbInputCellRight {
+	background-position: 100% 0
+}
+
+.RadComboBox_CNPC .rcbInput {
+	color: #000000;
+	font: normal 12px "Segoe UI",Arial,Helvetica,sans-serif;
+	line-height: 16px
+}
+
+.RadComboBox_CNPC .rcbEmptyMessage {
+	color: #666;
+	font-style: italic
+}
+
+.RadComboBox_CNPC .rcbArrowCellLeft {
+	background-position: 0 -176px
+}
+
+.RadComboBox_CNPC .rcbArrowCellRight {
+	background-position: -18px -176px
+}
+
+.RadComboBox_CNPC .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 0
+}
+
+.RadComboBox_CNPC .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% 0
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbInputCellLeft {
+	background-position: 0 -22px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbInputCellRight {
+	background-position: 100% -22px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbInput {
+	color: black
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbArrowCellLeft {
+	background-position: -36px -176px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbArrowCellRight {
+	background-position: -54px -176px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 -22px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% -22px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbInputCellLeft {
+	background-position: 0 -44px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbInputCellRight {
+	background-position: 100% -44px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbInput {
+	color: black
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbArrowCellLeft {
+	background-position: -72px -176px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbArrowCellRight {
+	background-position: -90px -176px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 -44px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% -44px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbInputCellLeft {
+	background-position: 0 -66px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbInputCellRight {
+	background-position: 100% -66px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbInput {
+	color: #8ba0bc
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbArrowCellLeft {
+	background-position: -108px -176px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbArrowCellRight {
+	background-position: -126px -176px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 -66px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% -66px
+}
+
+.RadComboBox_CNPC .rcbReadOnly .rcbInputCellLeft {
+	background-position: 0 0
+}
+
+.RadComboBox_CNPC .rcbReadOnly .rcbInputCellRight {
+	background-position: 100% -88px
+}
+
+.RadComboBox_CNPC .rcbReadOnly .rcbInput {
+	color: #000000
+}
+
+.RadComboBox_CNPC .rcbReadOnly .rcbArrowCellLeft {
+	background-position: -144px -176px
+}
+
+.RadComboBox_CNPC .rcbReadOnly .rcbArrowCellRight {
+	background-position: -162px -176px
+}
+
+.RadComboBox_CNPC .rcbReadOnly .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 -88px
+}
+
+.RadComboBox_CNPC .rcbReadOnly .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% -88px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbReadOnly .rcbInputCellLeft {
+	background-position: 0 -22px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbReadOnly .rcbInputCellRight {
+	background-position: 100% -110px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbReadOnly .rcbInput {
+	color: #1e395b
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbReadOnly .rcbArrowCellLeft {
+	background-position: -180px -176px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbReadOnly .rcbArrowCellRight {
+	background-position: -198px -176px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbReadOnly .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 -110px
+}
+
+.RadComboBox_CNPC .rcbHovered .rcbReadOnly .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% -110px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbReadOnly .rcbInputCellLeft {
+	background-position: 0 -132px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbReadOnly .rcbInputCellRight {
+	background-position: 100% -132px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbReadOnly .rcbInput {
+	color: #1e395b
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbReadOnly .rcbArrowCellLeft {
+	background-position: -216px -176px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbReadOnly .rcbArrowCellRight {
+	background-position: -234px -176px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbReadOnly .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 -132px
+}
+
+.RadComboBox_CNPC .rcbFocused .rcbReadOnly .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% -132px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbReadOnly .rcbInputCellLeft {
+	background-position: 0 -154px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbReadOnly .rcbInputCellRight {
+	background-position: 100% -154px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbReadOnly .rcbInput {
+	color: #8ba0bc
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbReadOnly .rcbArrowCellLeft {
+	background-position: -252px -176px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbReadOnly .rcbArrowCellRight {
+	background-position: -270px -176px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbReadOnly .rcbArrowCellLeft.rcbArrowCellHidden {
+	background-position: 0 -154px
+}
+
+.RadComboBox_CNPC .rcbDisabled .rcbReadOnly .rcbArrowCellRight.rcbArrowCellHidden {
+	background-position: 100% -154px
+}
+
+.RadComboBoxDropDown_CNPC {
+	border-color: #9babc2;
+	color: #000000;
+	background: white;
+	font: normal 12px "Segoe UI",Arial,Helvetica,sans-serif;
+	line-height: 16px
+}
+
+.RadComboBoxDropDown_CNPC .rcbHeader,.RadComboBoxDropDown_CNPC .rcbFooter {
+	color: #000000;
+	background-color: #edeff2
+}
+
+.RadComboBoxDropDown_CNPC .rcbHeader {
+	border-bottom-color: #9babc2
+}
+
+.RadComboBoxDropDown_CNPC .rcbFooter {
+	border-top-color: #9babc2
+}
+
+.RadComboBoxDropDown_CNPC .rcbHovered {
+	color: #1e395b;
+	background: #dfdfdf
+}
+
+.RadComboBoxDropDown_CNPC .rcbDisabled {
+	color: #8ba0bc;
+	background-color: transparent
+}
+
+.RadComboBoxDropDown_CNPC .rcbLoading {
+	color: #1e395b;
+	background: #dfdfdf
+}
+
+.RadComboBoxDropDown_CNPC .rcbItem em,.RadComboBoxDropDown_CNPC .rcbHovered em {
+	color: #1e395b;
+	background: #dfdfdf
+}
+
+.RadComboBoxDropDown_CNPC .rcbCheckAllItems {
+	color: #000000;
+	background-color: #edeff2
+}
+
+.RadComboBoxDropDown_CNPC .rcbCheckAllItemsHovered {
+	color: #000000;
+	background-color: #edeff2
+}
+
+.RadComboBoxDropDown_CNPC .rcbMoreResults {
+	border-top-color: #9babc2;
+	color: #000000;
+	background-color: #edeff2;
+	background-position: 0 -500px;
+	background-image: url('Common/radFormSprite.png');
+	_background-image: url('Common/radFormSpriteIE6.png')
+}
+
+.RadComboBoxDropDown_CNPC .rcbMoreResults a {
+	background-image: url('Common/radFormSprite.png');
+	_background-image: url('Common/radFormSpriteIE6.png');
+	background-position: -308px -181px
+}
+
+.RadComboBoxDropDown_CNPC .rcbSeparator {
+	color: #fff;
+	background: #8a8a8a
+}
+
+div.RadComboBoxDropDown_CNPC .rcbHovered {
+	background-color: rgb(250, 225, 133);
+}
+
+
+/* RadDropDownList_CNPC */
+.RadDropDownList_CNPC {
+	color: #000000;
+	font: normal 12px/16px "Segoe UI",Arial,Helvetica,sans-serif
+}
+
+.RadDropDownList_CNPC .rddlInner {
+	background-image: -webkit-linear-gradient(top,#fafbfd 0,#bfcddf 100%);
+	background-image: -moz-linear-gradient(top,#fafbfd 0,#bfcddf 100%);
+	background-image: -ms-linear-gradient(top,#fafbfd 0,#bfcddf 100%);
+	background-image: -o-linear-gradient(top,#fafbfd 0,#bfcddf 100%);
+	background-image: linear-gradient(top,#fafbfd 0,#bfcddf 100%);
+	/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafbfd',endColorstr='#bfcddf',GradientType=0);*/
+	border-color: #8ba0bc;
+	color: #000000;
+	background-color: #8ba0bc;
+	border-radius: 3px
+}
+
+.RadDropDownList_CNPC .rddlEmptyMessage {
+	color: #666
+}
+
+.RadDropDownList_CNPC .rddlIcon,.RadDropDownList_CNPC .rddlActionButton {
+	background-image: url('Common/radActionsSprite.png');
+	_background-image: url('Common/radActionsSprite.png');
+	background-position: -1px -20px
+}
+
+.rddlPopup_CNPC {
+	border-color: #9babc2;
+	color: #000000;
+	background: white;
+	font: normal 12px "Segoe UI",Arial,Helvetica,sans-serif;
+	line-height: 16px
+}
+
+.rddlPopup_CNPC .rddlHeader,.rddlPopup_CNPC rddlFooter {
+	color: #000000;
+	background-color: #edeff2
+}
+
+.rddlPopup_CNPC .rddlHeader {
+	border-bottom-color: #9babc2
+}
+
+.rddlPopup_CNPC rddlFooter {
+	border-top-color: #9babc2
+}
+
+.rddlPopup_CNPC .rddlItemHovered {
+	color: #1e395b;
+	background: #fae185
+}
+
+.rddlPopup_CNPC .rddlItemSelected {
+	color: #1e395b;
+	background: #fae185
+}
+
+.rddlPopup_CNPC .rddlItemDisabled {
+	color: #8ba0bc;
+	background-color: transparent
+}
+
+.rddlPopup_CNPC .rddlItemLoading {
+	color: #1e395b;
+	background: #dfdfdf
+}
+
+DIV.RadDropDownList_CNPC .rddlInner {
+	BORDER-BOTTOM-COLOR: #9babc2;
+	BACKGROUND-COLOR: #FFFFFF;
+	BORDER-TOP-COLOR: #9babc2;
+	BACKGROUND-POSITION: 0px 19px;
+	HEIGHT: 16px;
+	BORDER-RIGHT-COLOR: #9babc2;
+	BORDER-LEFT-COLOR: #9babc2;
+}
+
+DIV.RadDropDownList_CNPC .rddlFakeInput {
+	LINE-HEIGHT: 16px;
+	COLOR: #333333;
+}
+
+DIV.RadDropDownList_CNPC .rddlIcon {
+	BORDER-LEFT: #66C0FF 0px solid;
+	BACKGROUND-COLOR: transparent;
+	BORDER-TOP-COLOR: #00A1D6;
+	WIDTH: 18px;
+	BACKGROUND-POSITION: 0 -19px;
+	HEIGHT: 24px;
+}
+
+DIV.RadDropDownList_CNPC .rddlHovered.rddlInner {
+	BORDER-BOTTOM-COLOR: #f3d64a;
+	BORDER-TOP-COLOR: #f3d64a;
+	BORDER-RIGHT-COLOR: #f3d64a;
+	BORDER-LEFT-COLOR: #f3d64a;
+}
+
+DIV.RadDropDownList_CNPC .rddlHovered .rddlIcon {
+	BORDER-LEFT: #f3d64a 1px solid;
+	background-image: url(Common/radActionsSprite.png);
+	background-repeat: repeat-x;
+	WIDTH: 16px;
+	BACKGROUND-POSITION: -22px -19px;
+	HEIGHT: 24px;
+}
+
+DIV.RadDropDownList_CNPC .rddlFocused.rddlInner {
+	BORDER-BOTTOM-COLOR: #c28b31;
+	BACKGROUND-COLOR: transparent;
+	BORDER-TOP-COLOR: #c28b31;
+	BORDER-RIGHT-COLOR: #c28b31;
+	BORDER-LEFT-COLOR: #c28b31;
+}
+
+DIV.RadDropDownList_CNPC .rddlFocused .rddlIcon {
+	BORDER-BOTTOM-COLOR: #000000;
+	BORDER-LEFT: #c28b31 1px solid;
+	background-image: url(Common/radActionsSprite.png);
+	background-repeat: repeat-x;
+	BORDER-TOP-COLOR: #000000;
+	WIDTH: 16px;
+	BACKGROUND-POSITION: -42px -19px;
+	COLOR: #660066;
+	BORDER-RIGHT-COLOR: #000000;
+}
+/*组织机构树*/
+.RadTreeView_CNPC {
+	color:#000000;
+	font:normal 12px/16px "Segoe UI",Arial,Helvetica,sans-serif
+}
+.RadTreeView_CNPC .rtHover .rtIn {
+	color:#1e395b;
+	border-color:#f7c840 #f7c840;
+	background-color:#fff3c9;
+	background-image:url('TreeView/ItemHoveredBg.png')
+}
+.RadTreeView_CNPC .rtSelected .rtIn {
+	color:#1e395b;
+	border-color:#c28b31 #c2a34c;
+	background-color:#feed76;
+	background-image:url('TreeView/ItemSelectedBg.png')
+}
+.RadTreeView_CNPC .rtEdit .rtIn {
+	border-color:#515151;
+	background:#fff
+}
+.RadTreeView_CNPC .rtEdit .rtIn input {
+	color:#000000;
+	font:normal 12px/16px "Segoe UI",Arial,Helvetica,sans-serif
+}
+.RadTreeView_CNPC .rtChecked,.RadTreeView_CNPC .rtUnchecked,.RadTreeView_CNPC .rtIndeterminate {
+	background-image:url('Common/radFormToggleSprite.png');
+	_background-image:url('Common/radFormToggleSpriteIE6.png')
+}
+.RadTreeView_CNPC .rtLoadingIcon {
+	background-image:url('Common/loading_small.gif')
+}
+.RadTreeView_CNPC .rtSelected .rtLoadingBefore,.RadTreeView_CNPC .rtSelected .rtLoadingAfter,.RadTreeView_CNPC .rtSelected .rtLoadingBelow {
+	color:#333
+}
+.RadTreeView_CNPC .rtPlus,.RadTreeView_CNPC .rtMinus {
+	background-image:url('TreeView/PlusMinus.png')
+}
+.RadTreeView_CNPC_disabled .rtIn,.RadTreeView_CNPC .rtDisabled .rtIn {
+	color:#ccc
+}
+ DIV.RadTreeView_CNPC .rtIn {
+
+	COLOR: #000000;
+
+}
+ DIV.RadTreeView_CNPC .failcheck{
+
+	COLOR: Gray;
+
+}
+ DIV.RadTreeView_CNPC .changecheck{
+
+	COLOR: Red;
+
+}
+ DIV.RadTreeView_CNPC .normalcheck{
+
+
+}
+ DIV.RadTreeView_CNPC .deletecheck{
+
+    color: Gray;
+    text-decoration: line-through;
+
+}
+
+ DIV.RadTreeView_CNPC .rtHover .rtIn {
+
+	COLOR: #000000;
+
+}
+
+ DIV.RadTreeView_CNPC .rtSelected .rtIn {
+
+	COLOR: #000000;
+
+}
+
+
+/*下拉框内容多行显示*/
+.multipleRowsColumns .rcbItem, 
+.multipleRowsColumns .rcbHovered { 
+    float: left; 
+    margin: 0 1px; 
+    min-height: 13px; 
+    overflow: hidden; 
+    padding: 2px 19px 2px 6px; 
+    text-align:center;
+    width: 50px; 
+}
+
+
+

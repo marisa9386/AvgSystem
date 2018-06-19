@@ -1,0 +1,189 @@
+﻿@using AvgSystem;
+@using System.Text.RegularExpressions;
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <!--导入页面css-->
+    <link href="~/res/UI/UIContent/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/res/UI/UIContent/css/style.css" rel="stylesheet" />
+    <link href="~/res/UI/Content/css/homeindex.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/res/UI/UIContent/css/reset.css">
+    <link rel="stylesheet" href="~/res/UI/UIContent/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/res/UI/UIContent/css/yifanToast.css">
+    <script src="~/res/UI/UIContent/js/jquery.min.js"></script>
+    <script src="~/res/UI/UIContent/js/bootstrap.min.js"></script>
+    <script src="~/res/UI/Content/js/cookie/jquery.cookie.js"></script>
+    <script src="~/res/UI/Content/js/md5/jquery.md5.js"></script>
+    <script src="~/res/UI/Content/js/yifanToast.js"></script>
+    <script src="~/res/UI/Scripts/mypage.js"></script>
+    <script src="~/res/UI/Scripts/mypage.min.js"></script>
+    <script src="~/res/UI/UIContent/js/layer-v3.1.1/layer/layer.js"></script>
+    <script src="~/res/js/nebPay.js"></script>
+    <script src="~/res/js/nebulas.js"></script>
+    <script src="~/res/js/api.js" ></script>
+
+
+    <!--IE9适配，IE8以下浏览器不支持会提示-->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <!--导航条 begin-->
+    <header>
+        <nav class="navbar navbar-default mailNav">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand mailBrand" href="/home">
+                            <div style="margin-left:0px;">
+                                <img class="mailBrandImg" src="~/res/UI/UIContent/img/logo/logo.png" style="height:55px;width:auto;"  alt="">
+                                <div class="logoText">文字冒险模拟器</div>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse mailCollapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav pull-right mainNav">
+                            <li><a href='@Url.Action("Index", "Home")'>首页</a></li>
+                            <li><a href='@Url.Action("Index", "GamePage")'>旅者酒馆</a></li>
+                            <li><a href='@Url.Action("Index", "GameCollect")'>我的书架</a></li>
+                            <li><a href="@Url.Action("Index", "UserGame")">讲述冒险</a></li>
+                            <li><a href="@Url.Action("Index", "AboutSystem")">关于</a></li>
+                        </ul>
+
+
+                        @*<ul class="nav navbar-nav">
+                            <li class="bannerFont"><a href='@Url.Action("Index", "GamePage")'>旅者酒馆</a></li>
+                            <li class="bannerFont"><a href='@Url.Action("Index", "GameCollect")'>我的书架</a></li>
+                            <li class="bannerFont"><a href="@Url.Action("Index", "UserGame")">讲述冒险</a></li>
+                            <li class="bannerFont"><a href="@Url.Action("Index", "AboutSystem")">关于</a></li>
+                        </ul>*@
+
+
+                        @*<ul class="nav navbar-nav navbar-right">
+                            <li style="margin-top: -5px">
+                                <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-circle fa-stack-2x" style="font-size: 28px;color: rgba(44,157,255,1);"></i>
+                                        <i class="fa fa-user fa-stack-1x fa-inverse" style="font-size: 20px"></i>
+                                    </span>
+                                    <span style="font-size: 14px;font-weight: 600;line-height: 14px"></span>
+
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a class="menuItem" data-id="userInfo" href='@Url.Action("Index", "GameCollect")'><i class="fa fa-user" style="margin-right:5px;"></i>个人中心</a></li>
+                                </ul>
+                            </li>
+                       </ul>*@
+
+
+
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+    </header>
+    <!--导航条 end-->
+    <!--内容填充-->
+    @RenderBody()
+    <!--内容填充-->
+
+    <footer id="footer">
+        <div class="container">
+            <div class="social text-center">
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+                <a href="#"><i class="fa fa-weibo"></i></a>
+                <a href="#"><i class="fa fa-weixin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+            </div>
+
+            <div class="clear"></div>
+            <!--CLEAR FLOATS-->
+        </div>
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 panel">
+                        <div class="panel-body">
+                            <p class="simplenav">
+                                <a href="@Url.Action("Index", "Home")">首页</a> |
+                                <a href="@Url.Action("Index", "GamePage")">旅者酒馆</a> |
+                                <a href="@Url.Action("Index", "GameCollect")">我的书架</a> |
+                                <a href="@Url.Action("Index", "UserGame")">讲述冒险</a> |
+                                <a href="@Url.Action("Index", "AboutSystem")">关于</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 panel">
+                        <div class="panel-body">
+                            <p class="text-right">
+                                Copyright &copy; 2018.Valhalla Cloud All rights reserved.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /row of panels -->
+            </div>
+        </div>
+    </footer>
+
+
+    @*<footer id="footer2" class="navbar-static-bottom">
+        <div class="footer text-center">
+            <div class="copyright">
+                <p class="text-center">
+                    <a class="footerTextTop" href="#"> 关于我们 </a>
+                    <span class="footerLineStyle">|</span>
+                    <a class="footerTextTop" href="#"> 常见问题 </a>
+                    <span class="footerLineStyle">|</span>
+                    <a class="footerTextTop" href="#"> 意见反馈 </a>
+                    <span class="footerLineStyle">|</span>
+                    <a class="footerTextTop" href="#"> 联系我们 </a>
+                </p>
+                <div class="height20"></div>
+                <p class="text-center"><span class="footerTextBottom">&copy;2014-2018 www.avgsys.com</span>
+            </div>
+        </div>
+    </footer>*@
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+    (function ($) {
+
+
+
+
+
+
+    })(jQuery);
+
+
+
+
+
+</script>
