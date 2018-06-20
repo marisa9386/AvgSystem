@@ -168,6 +168,8 @@
     <Content Include="bin\zh-Hans\System.Web.Webpages.Deployment.resources.dll" />
     <Content Include="bin\zh-Hans\System.Web.Webpages.Razor.resources.dll" />
     <Content Include="bin\zh-Hans\System.Web.Webpages.resources.dll" />
+    <Content Include="favicon.ico" />
+    <Content Include="favicon2.ico" />
     <Content Include="Global.asax" />
     <Content Include="res\css\main.css" />
     <Content Include="res\js\api.js" />
@@ -773,6 +775,7 @@
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <None Include="Properties\PublishProfiles\AvgSystem.pubxml" />
     <None Include="res\UI\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="res\UI\Scripts\jquery-1.10.2.js" />
     <Content Include="res\UI\Scripts\jquery-1.10.2.min.js" />
@@ -1705,12 +1708,18 @@
     <Content Include="res\UI\UIContent\images\WorkRemindButton2.png" />
     <Content Include="res\UI\UIContent\images\yellow_bg.png" />
     <Content Include="res\UI\UIContent\img\banner1.jpg" />
+    <Content Include="res\UI\UIContent\img\banner2.png" />
+    <Content Include="res\UI\UIContent\img\banner3.png" />
     <Content Include="res\UI\UIContent\img\exam-banner.jpg" />
     <Content Include="res\UI\UIContent\img\images\cwgl.jpg" />
     <Content Include="res\UI\UIContent\img\images\o2o.jpg" />
     <Content Include="res\UI\UIContent\img\images\plus.jpg" />
+    <Content Include="res\UI\UIContent\img\logo\logo4.png" />
+    <Content Include="res\UI\UIContent\img\logo\logo2.png" />
+    <Content Include="res\UI\UIContent\img\logo\logo3.png" />
     <Content Include="res\UI\UIContent\img\logo\ccsu.jpg" />
     <Content Include="res\UI\UIContent\img\logo\logo.png" />
+    <Content Include="res\UI\UIContent\img\logo\logo5.png" />
     <Content Include="res\UI\UIContent\img\poster\poster.png" />
     <Content Include="res\UI\UIContent\img\tm.png" />
     <Content Include="res\UI\UIContent\js\bootstrap.min.js" />
@@ -1917,7 +1926,6 @@
     <Content Include="res\UI\Content\fonts\weathericons-regular-webfont.ttf" />
     <Content Include="res\UI\Content\fonts\weathericons-regular-webfont.woff" />
     <Content Include="res\UI\Content\fonts\weathericons-regular-webfontd41d.eot" />
-    <Content Include="res\UI\Content\js-改.rar" />
     <Content Include="res\UI\Content\js\simditor\css\editor.scss" />
     <Content Include="res\UI\Content\js\simditor\css\fonticon.scss" />
     <Content Include="res\UI\Content\js\simditor\css\simditor.scss" />
@@ -1956,6 +1964,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

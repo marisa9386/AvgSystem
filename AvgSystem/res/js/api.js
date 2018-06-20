@@ -13,7 +13,7 @@ var options = {
 var browser = function getBrowserInfo() { //获取浏览器名称
     return 'chrome'
 }();
-var mainContractAddress = "n1vSBT8hSKvhMYMxj9bzZxah8XGhG2PXzqa";
+var mainContractAddress = "n1vvMLoAfqrU9dCLqmj2gnEJknrc7udMC6r";
 
 function onSimulateCallClick(contractAddress,func,args,callback) {  //call查询调用函数，（合约地址，函数名，参数，回调）
 	var to  = contractAddress;

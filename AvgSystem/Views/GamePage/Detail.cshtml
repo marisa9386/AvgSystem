@@ -92,6 +92,8 @@
                         <div class="col-md-4">
                             <div class="height50"></div>
                             <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: -10px;display:none;" id="playGame">开始游戏</button>
+                            <div class="height20" id="freeGameDiv" style="display:none;"></div>
+                            <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: -10px;display:none;" id="buyFreeGame">收藏免费游戏</button>
                             <div class="height20"></div>
                             <button class="btn btn-primary bgBlue bdBlue width120" style="margin-top: -10px;display:none;" id="commentGame" data-toggle="modal" data-target="#commentModal">编写测评</button>
                         </div>
@@ -220,9 +222,24 @@
         var args = JSON.stringify([param]);
 
         newTransaction(mainContractAddress, 0, "addCommentInfo", args, function(t) {
-            ;
 
-            });
+            if("Error: Transaction rejected by user" == t) {
+                layer.alert("已取消", function (index) {
+                    layer.close(index);
+                });
+
+            } else {
+                layer.alert("提交完毕，请等待交易完成", function (index) {
+                    layer.close(index);
+                    $("#commentGame").hide();
+                    $("#commentModal").modal('hide');
+                });
+
+            }
+
+
+
+        });
 
     }
 
@@ -243,7 +260,7 @@
                 loadInfo("gameDislikes", "差评 " + item.dislikes);
                 loadInfo("gameIncome", "收入 " + item.income + " NAS");
                 loadInfo("gameAuthor", item.author);
-                
+
 
                 loadInfo("gamePubTime", timeStamp2String2(item.pubTime));
                 loadInfo("gameCost", item.cost + " NAS");
@@ -257,14 +274,22 @@
                     loadInfoHtml("playGame", "开始游戏");
                     $('#playGame').show();
                     $('#playGame').click(startGame);
+
+                    if( item.pay == 0 )
+                    {
+                        $('#freeGameDiv').show();
+                        $('#buyFreeGame').show();
+                        $('#buyFreeGame').click(buyFreeGame);
+                    }
+
                 } else {
                     loadInfoHtml("playGame", "购买游戏");
                     $('#playGame').show();
                     $('#playGame').click(buyGame);
                 }
                 //$('#commentGame').show();
-
-                if (item.isComment && (item.isComment == 0) ){
+                //alert(item.isComment);
+                if (item.isComment != null && (item.isComment == 0) && item.pay == 1 ){
                     $('#commentGame').show();
                 } else {
                     $('#commentGame').hide();
@@ -333,99 +358,51 @@
         var cost = $("#hidcost").val();
         newTransaction(mainContractAddress, cost, "payGame", args, function(t) {
             //console.log(t)
-            layer.alert("购买成功", function (index) {
-                layer.close(index);
-                loadGameDetail();
-            });
+            if("Error: Transaction rejected by user" == t) {
+                layer.alert("已取消", function (index) {
+                    layer.close(index);
+                });
+
+            } else {
+                 layer.alert("购买成功", function (index) {
+                    layer.close(index);
+                    window.location.href = '@Url.Action("Detail", "GamePage")?id=' + GameId;
+                });
+
+            }
 
 
         });
 
     };
+
+    var buyFreeGame = function() {
+        var args = JSON.stringify([GameId]);
+        newTransaction(mainContractAddress, 0, "payFreeGame", args, function(t) {
+            console.log(t);
+            if("Error: Transaction rejected by user" == t) {
+                layer.alert("已取消", function (index) {
+                    layer.close(index);
+                });
+
+            } else {
+                layer.alert("收藏成功", function (index) {
+                    layer.close(index);
+                    window.location.href = '@Url.Action("Detail", "GamePage")?id=' + GameId;
+                });
+
+            }
+
+
+        });
+
+    }
 
 
     var jobDetailUrl = '@Url.Action("Detail", "JobPage")';
 
     var applyJobUrl = '@Url.Action("ApplyJob", "JobPage")';
-    var applyJob = function () {
 
-
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("CheckApplyJob", "JobPage")',
-            data: { id: JobId },
-            dataType: "json",
-            success: function (data) {
-
-                //console.log(data);
-                //先判断是否登录
-                //登录后
-                //1.已参加学习，直接提示已经申请
-                //2.未参加学习，询问是否申请
-                if (data.state == "success") {
-                    if (data.data.type == "IN") {
-                        layer.alert(data.message, function (index) {
-                            layer.close(index);
-                        });
-                    }
-                    else
-                    {
-
-                        layer.confirm('是否申请此职位？', {
-                            btn: ['确认', '取消'] //按钮
-                        }, function (index) {
-
-                            layer.close(index);
-
-
-                            $.ajax({
-                                url: applyJobUrl,
-                                data: { id: JobId },
-                                type: "post",
-                                dataType: "json",
-                                success: function (data2) {
-                                    if (data2.state == "success") {
-                                        //yifanToast(data2.message);
-
-                                        layer.alert(data2.message, function (index) {
-                                            layer.close(index);
-                                        });
-
-
-                                    } else {
-                                        layer.alert(data2.message, function (index) {
-                                            layer.close(index);
-                                            $('#btnLogin').click();
-                                        });
-
-                                    }
-                                }
-
-                            });
-
-
-                        }, function () {
-
-                        });
-
-
-                    }
-                } else {
-                    layer.alert(data.message, function (index) {
-                        layer.close(index);
-                        $('#btnLogin').click();
-                    });
-                    //window.setTimeout(function () {
-                    //    window.location.href = '@Url.Action("Detail", "JobPage")?id=' + JobId;
-                    //}, 2000);
-                }
-            }
-        });
-
-
-
-    };
     var getJobUrl = '@Url.Action("GetJob", "JobPage")';
 
 
@@ -500,6 +477,8 @@
         $(function () {
             loadGameDetail();
             $.course.init();
+
+
             // $('#applyJob').click(applyJob);
         });
 

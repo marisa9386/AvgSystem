@@ -209,10 +209,23 @@
             
             var args = JSON.stringify([SectionId,param]);
             newTransaction(mainContractAddress, 0, method, args, function(t) {
-                layer.alert("保存成功", function (index) {
-                    layer.close(index);
-                    window.location.href = '@Url.Action("GameSection", "UserGame")?id=' + GameId;
-                });
+
+                if("Error: Transaction rejected by user" == t) {
+                    layer.alert("已取消", function (index) {
+                        layer.close(index);
+                    });
+                } else {
+
+                    layer.alert("保存成功", function (index) {
+                        layer.close(index);
+                        window.location.href = '@Url.Action("GameSection", "UserGame")?id=' + GameId;
+                    });
+                }
+
+               
+
+
+
             });
 
 
@@ -328,10 +341,23 @@
 
         var args = JSON.stringify([param,jumpParam]);
         newTransaction(mainContractAddress, 0, method, args, function(t) {
-            layer.alert("保存成功", function (index) {
-                layer.close(index);
-                window.location.href = '@Url.Action("GameSection", "UserGame")?id=' + GameId;
-            });
+
+            if("Error: Transaction rejected by user" == t) {
+                layer.alert("已取消", function (index) {
+                    layer.close(index);
+                });
+            } else {
+                layer.alert("保存成功", function (index) {
+                    layer.close(index);
+                    window.location.href = '@Url.Action("GameSection", "UserGame")?id=' + GameId;
+                });
+
+            }
+
+            
+
+
+
         });
     }
 

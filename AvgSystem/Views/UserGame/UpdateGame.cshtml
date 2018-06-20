@@ -100,188 +100,12 @@
 <script type="text/javascript">
     var GameId = @ViewBag.GameId;
     var actmsg = "@ViewBag.actmsg";
-   
 
-    //添加证书
-    function addCer() {
-        var form = '  <div style="border:1px solid #ddd;padding: 15px">'+
-                '                                    <form class="form-horizontal">'+
-                '                                        <div class="form-group">'+
-                '                                            <label class="col-sm-2 control-label font555 fontSize14">证书名称</label>'+
-                '                                            <div class="col-sm-10">'+
-                '                                                <input type="text" class="form-control" id="cerName" maxlength="50" placeholder="请填写证书等级">' +
-                '                                            </div>'+
-                '                                        </div>'+
-                '                                        <div class="form-group">'+
-                '                                            <label class="col-sm-2 control-label font555 fontSize14">证书等级</label>'+
-                '                                            <div class="col-sm-10">'+
-                '                                                <input type="text" class="form-control" id="cerLevel" maxlength="50" placeholder="请填写证书等级">' +
-                '                                            </div>'+
-                '                                        </div>' +
-                '                                        <div class="form-group">' +
-                '                                            <label class="col-sm-2 control-label font555 fontSize14">获得时间</label>' +
-                '                                            <div class="col-sm-10">' +
-                '                                                <input type="text" class="editInput" id="cerIsuDT" readonly="readonly" placeholder="获得时间 :如2015-06-01">' +
-                '                                            </div>' +
-                '                                        </div>' +
-                '                                        <div style="text-align: center;margin-top: 10px">'+
-                '                                            <a class="btn btn-default confirmButton" style="width: 60px" href="javascript:void(0)" onclick="saveCer()">确定</a>' +
-                '                                        </div>'+
-                '                                    </form>'+
-                '                                </div>';
-        $('#certificateEdit').html(form);
 
-        $("#cerIsuDT").fdatepicker({
-            format: 'yyyy-mm-dd'
-        });
-
-    }
     var saveCerUrl = '@Url.Action("SaveCer", "ResumePage")';
     //保存证书
-    function saveCer() {
-
-        var cerName = $("#cerName").val();
-        var cerLevel = $("#cerLevel").val();
-        var cerIsuDT = $("#cerIsuDT").val();
-        $.ajax({
-            type: "POST",
-            url: saveCerUrl,//填写保存培训经验基本信息接口
-            dataType : "json",
-            contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-            cache: false,
-            data: {
-                'RId': Id,
-                'Name': cerName,
-                'Level': cerLevel,
-                'IsuDT': cerIsuDT
-            },
-            success:function(data) {
-                if (data.state == "success") {
-                    var data = data.data;
-
-                    $("#appendCertificateEdit").append('<div class="row" style="margin-bottom: 20px" id="cer_' + data.Id + '">\
-                        <div class="col-md-10" style="line-height:34px;">\
-                            <div class="row">\
-                                <div class="col-md-6">\
-                                    <span class="fontSize14">' + cerName + '</span>\
-                                </div>\
-                                <div class="col-md-3">\
-                                    <span class="fontSize14">' + cerLevel + '</span>\
-                                </div>\
-                                <div class="col-md-3">\
-                                    <span class="fontSize14">' + cerIsuDT + '</span>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        <div class="col-md-2">\
-                            <button onclick="delCer(\'' + data.Id + '\')" class="btn btn-danger" style="background-color: #fff;color:#e35b5a">\
-                                <i class="fa fa-trash"></i> 删除\
-                            </button>\
-                        </div>\
-                    </div>');
 
 
-                    $('#certificateEdit').html("");
-                }else{
-                    yifanToast("保存失败，请重试",'toast-md');
-                }
-            },
-            error : function() {
-
-
-                yifanToast("无法连接服务器",'toast-md');
-            }
-        });
-
-    }
-    var delCerUrl = '@Url.Action("DelCer", "ResumePage")';
-    //删除证书
-    function delCer(id) {
-        $.ajax({
-            type: "POST",
-            url: delCerUrl,//填写删除证书接口
-            dataType : "json",
-            contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-            cache: false,
-            data:{
-                'id':id
-            },
-            success:function(data) {
-                if (data.state == "success") {
-                    //如果在后端删除成功，那么前端也会删除相应的div
-                    yifanToast("删除成功", 'toast-md');
-                    $('#cer_' + id).remove();
-
-                }else{
-                    yifanToast("删除失败，请重试",'toast-md');
-                }
-            },
-            error : function() {
-                yifanToast("无法连接服务器",'toast-md');
-            }
-        });
-    }
-
-
-
-
-    //加载简历
-    function loadResume(data) {
-        //var data = { Cv: null, JobExps: null, TrainExps: null, Edu: null, Cers: null };
-        if (data) {
-            if (data.Cv) {
-                /*Username，UserSex，UserAge，UserAddress，UserTel，UserEmail，Logo SkillContent SelfContent*/
-                $.each(data.Cv, function (key, val) {
-                    $('.cvUserInfo,.cvSkill,.cvSelfCom').find('#cv' + key).val(data.Cv[key]);
-                });
-                //alert(data.Cv.UserBirthDate);
-                if (data.Cv.UserBirthDate != "" && data.Cv.UserBirthDate != null)
-                {
-                    //alert(2);
-                    $('#cvUserBirthDate').val(data.Cv.UserBirthDate.substring(0, 10));
-                }
-
-                if (data.Cv.Logo != "" && data.Cv.Logo != null){
-                    $('#cvLogoImg').attr('src', "/" + data.Cv["Logo"]);
-                }
-                // $('#cvLogoImg').attr('src', "/File/GetFile?keyValue=" + data.Cv["Logo"]);
-            }
-
-
-            if (data.Cers) {
-                var $cvCer = $('.cvCer');
-                for (var i = 0; i < data.Cers.length; i++) {
-                    var cer = data.Cers[i];
-                    var IsuDT = "";
-                    if (cer.IsuDT != "" && cer.IsuDT != null) {
-                        IsuDT = cer.IsuDT.substring(0, 10)
-                    }
-                    //Id Name Level
-                    $cvCer.append('<div class="row" style="margin-bottom: 20px" id="cer_'+cer.ID+'">\
-                        <div class="col-md-10" style="line-height:34px;">\
-                            <div class="row">\
-                                <div class="col-md-6">\
-                                    <span class="fontSize14">'+cer.Name+'</span>\
-                                </div>\
-                                <div class="col-md-3">\
-                                    <span class="fontSize14">' + cer.CerLevel + '</span>\
-                                </div>\
-                                <div class="col-md-3">\
-                                    <span class="fontSize14">' + IsuDT + '</span>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        <div class="col-md-2">\
-                            <button onclick="delCer(\'' + cer.ID + '\')" class="btn btn-danger" style="background-color: #fff;color:#e35b5a">\
-                                <i class="fa fa-trash"></i> 删除\
-                            </button>\
-                        </div>\
-                    </div>');
-
-                }
-            }
-        }
-    }
     var getResumeUrl = '@Url.Action("GetResume", "ResumePage")';
 
     $(function () {
@@ -349,16 +173,30 @@
 
         var args = JSON.stringify([param]);
         newTransaction(mainContractAddress, 0, method, args, function(t) {
-            layer.alert("保存成功", function (index) {
-                layer.close(index);
-                window.location.href = '@Url.Action("Index", "UserGame")';
-            });
+
+            if("Error: Transaction rejected by user" == t) {
+                layer.alert("已取消", function (index) {
+                    layer.close(index);
+                });
+            } else {
+
+                layer.alert("保存成功", function (index) {
+                    layer.close(index);
+                    window.location.href = '@Url.Action("Index", "UserGame")';
+                });
+            }
+
+
+
+
+
+
         });
     }
 
 
     function pubGame() {
-    
+
         var isPub = $("#isPub").val();
         if( actmsg == "update" && isPub == 0)
         {
@@ -369,12 +207,26 @@
         }
         var args = JSON.stringify([param]);
         newTransaction(mainContractAddress, 0, "pubGameInfo", args, function(t) {
-            layer.alert("提交成功", function (index) {
-                layer.close(index);
-                window.location.href = '@Url.Action("Index", "UserGame")';
-            });
+
+            if("Error: Transaction rejected by user" == t) {
+                layer.alert("已取消", function (index) {
+                    layer.close(index);
+                });
+            } else {
+                layer.alert("提交成功", function (index) {
+                    layer.close(index);
+                    window.location.href = '@Url.Action("Index", "UserGame")';
+                });
+
+            }
+
+
+          
+
+
+
         });
-    
+
     }
 
 
