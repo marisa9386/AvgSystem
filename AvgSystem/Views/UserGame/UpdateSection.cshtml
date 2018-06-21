@@ -148,7 +148,7 @@
             });
         }
         else {
-            var id = Date.parse( new Date());
+            var id = uuid();
             var paramStr = JSON.stringify({keyword:jumpKeyword,desc:jumpContent});
             $("#appendCertificateEdit").append('<div class="row" style="margin-bottom: 20px" id="jump_' + id + '">\
                             <div class="col-md-10" style="line-height:34px;">\
@@ -195,9 +195,10 @@
             method = "updateSectionChoice";
             //param = [{keyword:"k3",desc:"单独更新section"},{keyword:"k4",desc:"单独更新section"}];
             var jumpStrList = $('.jumpString');  
-
+            //alert(jumpStrList.length);
             for(var i=0;i<jumpStrList.length;i++){
                 if($(jumpStrList[i]).val()==""){
+                    //alert(i);
                     alert("字段内容不允许为空");
                     return false;
                 }
@@ -268,9 +269,13 @@
                 $("#btnSave").show();
 
                 if (item.sectionChoices) {
+                    var ids = [];
+                    var values = [];
+
+
                     for (var i = 0; i < item.sectionChoices.length; i++) {
                         var tmp = item.sectionChoices[i];
-                        var timeid = Date.parse( new Date());
+                        var timeid = uuid();
                         var paramStr = JSON.stringify({keyword:tmp.keyword,desc:tmp.desc});
                         $("#appendCertificateEdit").append('<div class="row" style="margin-bottom: 20px" id="jump_' + timeid + '">\
                             <div class="col-md-10" style="line-height:34px;">\
@@ -284,14 +289,26 @@
                                 </div>\
                             </div>\
                             <div class="col-md-2">\
-                                <input type="text" style="display:none;" class="jumpString" id="jumpStr_' + timeid + '" >\
+                                <input type="text" style="display:none;" class="jumpString" id="jumpStr_' + timeid + '"  >\
                                 <button onclick="delCer(\'' + timeid + '\')" class="btn btn-danger" style="background-color: #fff;color:#e35b5a">\
                                     <i class="fa fa-trash"></i> 删除\
                                 </button>\
                             </div>\
                         </div>');
-                        $("#jumpStr_"+timeid).val(paramStr);
+                        ids.push("jumpStr_"+timeid);
+                        values.push(paramStr);
+                        //$("#jumpStr_"+timeid).val(paramStr);
+                        //alert($("#jumpStr_"+timeid).val());
                     }
+
+                    setTimeout(function() {  
+                        for(var i=0; i<ids.length; i++) {
+                            $("#"+ids[i]).val(values[i]);
+                        }
+                    },0);
+
+
+
                 }
 
                 $("#btnUpdateJump").show();

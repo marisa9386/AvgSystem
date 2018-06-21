@@ -168,8 +168,10 @@
     <Content Include="bin\zh-Hans\System.Web.Webpages.Deployment.resources.dll" />
     <Content Include="bin\zh-Hans\System.Web.Webpages.Razor.resources.dll" />
     <Content Include="bin\zh-Hans\System.Web.Webpages.resources.dll" />
+    <Content Include="contract\avg_contract.js" />
     <Content Include="favicon.ico" />
     <Content Include="favicon2.ico" />
+    <Content Include="file\logo512.png" />
     <Content Include="Global.asax" />
     <Content Include="res\css\main.css" />
     <Content Include="res\js\api.js" />
@@ -775,6 +777,7 @@
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="file\guide.docx" />
     <None Include="Properties\PublishProfiles\AvgSystem.pubxml" />
     <None Include="res\UI\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="res\UI\Scripts\jquery-1.10.2.js" />

@@ -65,7 +65,7 @@
                             <li><a href='@Url.Action("Index", "GamePage")'>旅者酒馆</a></li>
                             <li><a href='@Url.Action("Index", "GameCollect")'>我的书架</a></li>
                             <li><a href="@Url.Action("Index", "UserGame")">讲述冒险</a></li>
-                            <li><a href="#">关于</a></li>
+                            <li><a href="~/file/guide.docx">关于</a></li>
                         </ul>
 
 
@@ -108,10 +108,10 @@
     <footer id="footer">
         <div class="container">
             <div class="social text-center">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="mailto:marisa9386@gmail.com"><i class="fa fa-google-plus"></i></a>
-                <a href="#"><i class="fa fa-weibo"></i></a>
-                <a href="#"><i class="fa fa-weixin"></i></a>
+                @*<a href="#"><i class="fa fa-twitter"></i></a>*@
+                <a href="mailto:marisa9386@gmail.com"><i class="fa fa-envelope"></i></a>
+                @*<a href="#"><i class="fa fa-weibo"></i></a>*@
+                @*<a href="#"><i class="fa fa-weixin"></i></a>*@
                 <a href="https://github.com/marisa9386/AvgSystem" target="_blank"><i class="fa fa-github"></i></a>
             </div>
 
@@ -129,7 +129,7 @@
                                 <a href="@Url.Action("Index", "GamePage")">旅者酒馆</a> |
                                 <a href="@Url.Action("Index", "GameCollect")">我的书架</a> |
                                 <a href="@Url.Action("Index", "UserGame")">讲述冒险</a> |
-                                <a href="#">关于</a>
+                                <a href="~/file/guide.docx">关于</a>
                             </p>
                         </div>
                     </div>

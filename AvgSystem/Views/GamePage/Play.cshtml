@@ -47,7 +47,9 @@
                     <div class="text-center">
                         <button class="btn btn-primary bgBlue bdBlue width120" id="btnMain"  onclick="goMain();">返回介绍</button>
                         <button class="btn btn-primary bgBlue bdBlue width120" id="btnRestart" onclick="jumpRestart();">重头开始</button>
+                        <button class="btn btn-primary bgBlue bdBlue width120" style="display:none;" id="btnRefresh" onclick="jumpRefresh();">刷新一下</button>
                         <button class="btn btn-primary bgBlue bdBlue width120" style="display:none;" onclick="jumpSection();" id="btnJump">进入选项</button>
+                        <input id="hidKeyword" type="text" style="display:none;" />
                     </div>
                 </div>
                 
@@ -108,12 +110,18 @@
 
     var jumpSection = function () {
         var jumpKeyword = $("input[name='optionsRadios']:checked").val(); 
+        $("#hidKeyword").val(jumpKeyword);
         loadGameSection(jumpKeyword);   
     };
 
     var jumpRestart = function () {
         var jumpKeyword = $("#startSection").val();
         loadGameSection(jumpKeyword);   
+    };
+
+    var jumpRefresh = function () { 
+        $("#btnRefresh").hide();
+        loadGameSection( $("#hidKeyword").val());     
     };
 
     var loadGameSection = function (keyword) {
@@ -126,46 +134,53 @@
         $sectionArea.empty();
 
         onSimulateCallClick(mainContractAddress, "getSectionByKeyword", args, function (e) {
-            var item = JSON.parse(e.result);
-            if (item.keyword) {
-                loadInfoHtml("gameSection", item.content);
+            console.log(keyword);
+            console.log(e);
+            console.log(e.result);
 
-                var arrChoices = item.sectionChoices;
-                if(arrChoices !=null && arrChoices.length > 0)
-                {
+            if(e == null || e.result == null || e.result == "TypeError: Cannot read property 'keyword' of null")
+            {
+                $("#btnRefresh").show();
+            }else
+            {
+                
+                var item = JSON.parse(e.result);
+                if (item != null && item.keyword) {
+                    loadInfoHtml("gameSection", item.content.replace(/\r\n/g,"<br>").replace(/\n/g, "</br>"));
+                    //
+                    var arrChoices = item.sectionChoices;
+                    if(arrChoices !=null && arrChoices.length > 0)
+                    {
                     
-                    var flag = "checked";
-                    for (var i = 0; i < arrChoices.length; i++) {
-                        var item = arrChoices[i];
-                        var desc = item.desc;
-                        //desc = "在本章中，我们将学习如何使用 Bootstrap 创建表单。Bootstrap 通过一些简单的 HTML 标签和扩展的类即可创建出不同样式的表单.";
-                        $sectionArea.append('<div class="radio labelheight">\
+                        var flag = "checked";
+                        for (var i = 0; i < arrChoices.length; i++) {
+                            var item = arrChoices[i];
+                            var desc = item.desc;
+                            //desc = "在本章中，我们将学习如何使用 Bootstrap 创建表单。Bootstrap 通过一些简单的 HTML 标签和扩展的类即可创建出不同样式的表单.";
+                            $sectionArea.append('<div class="radio labelheight">\
                             <label>\
                                 <input type="radio" name="optionsRadios" id="optionsRadios' + i + '" value="' + item.keyword + '" ' + flag + '> ' + desc + '\
                             </label>\
                         </div>');
-                        flag = "";
+                            flag = "";
+                        }
+                        $("#btnJump").show();
+
                     }
-                    $("#btnJump").show();
+                    else {
+                        $("#btnJump").hide();
+                    }
 
+                } else if (item == null ){
+               
                 }
-                else {
-                    $("#btnJump").hide();
-                }
-                
-
-
-
-                //sectionChoices  [{\"desc\":\"d3\",\"keyword\":\"s2\"},{\"desc\":\"d4\",\"keyword\":\"s3\"}]
-
-
-            } else {
-
             }
-
         });
 
     };
+
+
+
 
     function loadInfo(id, content) {
         if (id == "" || id == null || id == "undefined") {

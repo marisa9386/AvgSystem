@@ -28,10 +28,12 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <div style="background-image: url(/res/UI/UIContent/img/banner2.png);height: 450px;background-size: cover;background-position: center top;background-repeat: no-repeat">
-                    <div class="carousel-caption">
+                <a href="@Url.Action("Play","GamePage")?id=1" target="_blank">
+                    <div style="background-image: url(/res/UI/UIContent/img/banner2.png);height: 450px;background-size: cover;background-position: center top;background-repeat: no-repeat">
+                        <div class="carousel-caption">
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="item">
                 <div style="background-image: url(/res/UI/UIContent/img/banner3.png);height: 450px;background-size: cover;background-position: center top;background-repeat: no-repeat">
@@ -63,7 +65,7 @@
         <div class="height40"></div>
 
         <div class="row" id="gameArea">
-            <div class="col-md-6"></div>
+            搜索中......请检查是否开启Nebulas钱包并切换至主网！
         </div>
     </div>
 
@@ -156,7 +158,7 @@
                         </div>');
                 }
             } else {
-                $gameArea.append('抱歉，暂无相关信息！');
+                $gameArea.append('抱歉，暂无相关信息！请检查是否开启Nebulas钱包并切换至主网！');
             }
 
         });
